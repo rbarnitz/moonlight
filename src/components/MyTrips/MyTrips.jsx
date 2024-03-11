@@ -13,16 +13,29 @@ function MyTrips() {
 
   //retrieve logged-in user info:
   const user = useSelector((store) => store.user.id);
-  console.log('user ID is: ', userId);
+  console.log('user ID is: ', user);
+  console.log('URL ID is: ', userId);
+
+  const authenticatedUserID = userId;
 
   const trips = useSelector((state) => state.tripsReducer); // Access trips from tripsReducer
   console.log('store is: ', trips);
 
   // Fetch user trips on component mount
   useEffect(() => {
-    // Dispatch FETCH_TRIPS action to get trips from the server
-    dispatch({ type: 'FETCH_TRIPS', payload: userId });
-  }, [userId]);
+    //check if user is authorized for this data:
+
+    if (user && user == userId) {
+      // Dispatch FETCH_TRIPS action to get trips from the server
+      dispatch({ type: 'FETCH_TRIPS', payload: userId });
+    }
+  }, [userId, user, dispatch]);
+
+  // If the authenticated user does not match the URL userID, error
+  if (user != userId) {
+    return <div>Sorry, you are not authorized to view these trips.</div>;
+  }
+
   //update to change when trip data changes?
 
   return (

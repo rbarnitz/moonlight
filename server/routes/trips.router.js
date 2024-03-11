@@ -13,7 +13,7 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   //pull user ID to fetch trip data
   // const userID = req.user.id;
   // console.log('current user ID:', userID);
