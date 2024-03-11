@@ -1,5 +1,11 @@
 const express = require('express');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
+const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
+const userStrategy = require('../strategies/user.strategy');
+
 const router = express.Router();
 
 //Not currently working
@@ -7,15 +13,15 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
-  const userID = req.user.id;
-  console.log('fetching trips for: ', userID);
-
+router.get('/:id', (req, res) => {
+  //pull user ID to fetch trip data
+  // const userID = req.user.id;
+  // console.log('current user ID:', userID);
   const query = `SELECT * FROM 
-  "trips" WHERE "trips".user_id = 7;`;
+  "trips" WHERE "trips".user_id = $1;`;
 
   pool
-    .query(query)
+    .query(query, [req.params.id])
     .then((result) => {
       //return all trips matching this ID
       res.send(result.rows);

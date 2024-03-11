@@ -62,4 +62,13 @@ passport.use(
   })
 );
 
+// Custom middleware to add userID to req object after authentication
+// allows trips request to DB to happen here, rather than later
+passport.use('addUserIDToReq', (req, res, next) => {
+  if (req.isAuthenticated() && req.user) {
+    req.userID = req.user.id;
+  }
+  next();
+});
+
 module.exports = passport;

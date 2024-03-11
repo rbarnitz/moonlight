@@ -11,6 +11,11 @@ const router = express.Router();
 // Handles Ajax request for user information if user is authenticated
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
+  const userID = req.user.id;
+  console.log('current user ID:', userID);
+
+  // Redirect to /trips route with userID as query parameter
+  //res.redirect(`/trips?userID=${userID}`);
   res.send(req.user);
 });
 
