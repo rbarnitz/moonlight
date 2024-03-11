@@ -18,9 +18,6 @@ function MyTrips() {
 
   const authenticatedUserID = userId;
 
-  const trips = useSelector((state) => state.tripsReducer); // Access trips from tripsReducer
-  console.log('store is: ', trips);
-
   // Fetch user trips on component mount
   useEffect(() => {
     //check if user is authorized for this data:
@@ -38,11 +35,29 @@ function MyTrips() {
 
   //update to change when trip data changes?
 
+  const trips = useSelector((store) => store.tripsReducer.trips); // Access trips from tripsReducer
+  console.log('store is: ', trips[0]);
+
+  const tripsList = trips.trips;
+  console.log(trips[0]);
+
+  if (!Array.isArray(trips) || trips.length === 0) {
+    return <div>No trips to display</div>;
+  }
+
   return (
     <div>
       {/* Display trips */}
       <h1>User ID is: {user}</h1>
       <h1>URL ID is: {userId}</h1>
+      <ul>
+        {trips.map((trip) => (
+          <li key={trip.trip_id}>
+            Location: {trip.trip_location}, Start: {trip.trip_start}, End:{' '}
+            {trip.trip_end}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
