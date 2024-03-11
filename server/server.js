@@ -26,7 +26,7 @@ app.use(passport.session());
 // Routes
 //register new routes here:
 app.use('/api/user', userRouter);
-app.use('/api/trips', tripsRouter);
+app.use('/api/mytrips', tripsRouter);
 
 // Listen Server & Port
 app.listen(PORT, () => {
