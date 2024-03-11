@@ -16,6 +16,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
   // Redirect to /trips route with userID as query parameter
   //res.redirect(`/trips?userID=${userID}`);
+
   res.send(req.user);
 });
 

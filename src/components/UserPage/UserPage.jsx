@@ -8,13 +8,13 @@ import store from '../../redux/store';
 function UserPage() {
   const history = useHistory();
 
-  function myTrips() {
-    history.push('/mytrips');
-  }
-
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   console.log(user);
+
+  function myTrips() {
+    history.push(`/mytrips/${user.id}`);
+  }
 
   return (
     <div className="container">

@@ -107,7 +107,7 @@ function App() {
             )}
           </Route>
 
-          <Route exact path="/mytrips">
+          <Route exact path="/mytrips/:userId">
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page

@@ -24,15 +24,6 @@ function* fetchUser() {
   }
 }
 
-function* fetchTrips() {
-  try {
-    const tripsResponse = yield axios.get('/api/mytrips');
-    yield put({ type: 'SET_TRIPS', payload: response.data });
-  } catch (error) {
-    console.log('User get request failed', error);
-  }
-}
-
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
 }
