@@ -2,6 +2,8 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+//Not currently working
+
 /**
  * GET route template
  */
@@ -15,6 +17,7 @@ router.get('/', (req, res) => {
   pool
     .query(query)
     .then((result) => {
+      //return all trips matching this ID
       res.send(result.rows);
     })
     .catch((err) => {

@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import store from '../../redux/store';
+import tripsReducer from '../../redux/reducers/trips.reducer';
 
 function MyTrips() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
-  //const user = useSelector((store) => store.user);
-  //Try: const trips = useSelector((store) => store.user.trips) or store.trips ;
+  const dispatch = useDispatch();
+
+  //retrieve logged-in user info:
+  const user = useSelector((store) => store.user.id);
+  console.log('user ID is: ', user);
+
+  const trips = useSelector((state) => state.tripsReducer); // Access trips from tripsReducer
+  console.log('store is: ', trips);
+
+  // Fetch user trips on component mount
+  useEffect(() => {
+    // Dispatch FETCH_TRIPS action to fetch trips from the server
+    dispatch({ type: 'FETCH_TRIPS', payload: user });
+  }, [user]);
+  //update to change when trip data changes?
+
   return (
-    <div className="container">
-      <h1>My Trips:</h1>
-      {/* <h2>Welcome, {user.username}!</h2>
-        <p>Your ID is: {user.id}</p> */}
-      <LogOutButton className="btn" />
+    <div>
+      {/* Display trips */}
+      <h1>User ID is: {user}</h1>
     </div>
   );
 }
