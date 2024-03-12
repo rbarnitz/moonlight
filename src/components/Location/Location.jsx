@@ -17,6 +17,9 @@ const Location = () => {
   //set town reducer for API & search
   const [townName, setTownName] = useState('');
 
+  //linking to MoonData page
+  let history = useHistory();
+
   //setting search changes
   const handleInputChange = (event) => {
     setTownName(event.target.value);
@@ -26,25 +29,35 @@ const Location = () => {
     console.log('search clicked', townName);
   };
 
+  //navigate to Calendar
+  function handleNext() {
+    history.push('/moondata');
+  }
+
   return (
-    <TextField
-      id="outlined-basic"
-      label="Enter Location"
-      variant="outlined"
-      type="text"
-      value={townName}
-      onChange={handleInputChange}
-      color="success"
-      InputProps={{
-        endAdornment: (
-          <InputAdornment position="end">
-            <IconButton onClick={handleSearch} aria-label="search" edge="end">
-              <SearchIcon />
-            </IconButton>
-          </InputAdornment>
-        ),
-      }}
-    />
+    <div>
+      <TextField
+        id="outlined-basic"
+        label="Enter Location"
+        variant="outlined"
+        type="text"
+        value={townName}
+        onChange={handleInputChange}
+        color="success"
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton onClick={handleSearch} aria-label="search" edge="end">
+                <SearchIcon />
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
+      />
+      <Button onClick={handleNext} variant="outlined">
+        Next
+      </Button>
+    </div>
   );
 };
 

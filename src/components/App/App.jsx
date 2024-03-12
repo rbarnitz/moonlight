@@ -21,6 +21,8 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import MyTrips from '../MyTrips/MyTrips';
 import Location from '../Location/Location';
+import MoonData from '../MoonData/MoonData';
+import SetDates from '../SetDates/SetDates';
 
 import './App.css';
 
@@ -121,6 +123,14 @@ function App() {
 
           <Route exact path="/location">
             <Location />
+          </Route>
+
+          <Route exact path="/moondata">
+            <MoonData />
+          </Route>
+
+          <Route exact path="/setdates">
+            <SetDates />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
