@@ -62,7 +62,7 @@ const SetDates = () => {
       />
 
       <Button onClick={handleNext} variant="outlined">
-        Next
+        Save Dates
       </Button>
     </div>
   );
