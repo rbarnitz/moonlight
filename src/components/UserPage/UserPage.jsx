@@ -16,6 +16,10 @@ function UserPage() {
     history.push(`/mytrips/${user.id}`);
   }
 
+  function newTrip() {
+    history.push(`/location`);
+  }
+
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
@@ -24,6 +28,9 @@ function UserPage() {
       <button onClick={myTrips} data-testid="toList">
         My Trips
       </button>{' '}
+      <button onClick={newTrip} data-testid="toList">
+        New Trip
+      </button>
     </div>
   );
 }

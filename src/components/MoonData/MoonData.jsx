@@ -3,11 +3,15 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import './MoonData.css';
 import { format } from 'date-fns';
+import { useSelector } from 'react-redux';
 
 import { DayPicker } from 'react-day-picker';
 import Button from '@mui/material/Button';
 
 const MoonData = () => {
+  const user = useSelector((store) => store.user.id);
+  console.log(user);
+
   //linking to MoonData page
   let history = useHistory();
 
@@ -16,7 +20,7 @@ const MoonData = () => {
 
   //navigate to Calendar
   function handleNext() {
-    history.push('/setdates');
+    history.push(`/setdates/${user}`);
   }
   console.log('selected day is: ', selectedDay);
 

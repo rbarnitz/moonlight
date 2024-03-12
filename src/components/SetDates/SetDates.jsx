@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './SetDates.css';
 import { format } from 'date-fns';
 
@@ -11,6 +11,9 @@ import { DayPicker } from 'react-day-picker';
 const SetDates = () => {
   //linking to MoonData page
   let history = useHistory();
+
+  const user = useSelector((store) => store.user.id);
+  console.log(user);
 
   //set range state
   const [range, setRange] = useState();
@@ -28,12 +31,20 @@ const SetDates = () => {
           </p>
         </>
       );
-      console.log('date range is:', footer);
+      console.log('date range is:', footer.props.children);
+      // const dateStart = footer.props.children.props.children;
+      // console.log('start is: ', dateStart);      const dateEnd = footer.props.children[1];
+
+      const startDate = footer.props.children[1].props.children[0];
+      const endDate = footer.props.children[1].props.children[2];
+
+      console.log('start & end are: ', startDate, endDate);
     }
   }
+
   //navigate to Calendar
   function handleNext() {
-    history.push('/mytrips');
+    history.push(`/mytrips/${user}`);
   }
 
   return (
