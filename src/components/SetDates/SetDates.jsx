@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import './SetDates.css';
+import { format } from 'date-fns';
 
 import Button from '@mui/material/Button';
 //import DateRange from 'react-day-picker/es/DateRange';
-import DayPicker from 'react-day-picker';
+import { DayPicker } from 'react-day-picker';
 
 const SetDates = () => {
   //linking to MoonData page
