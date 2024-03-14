@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import store from '../../redux/store';
 import tripsReducer from '../../redux/reducers/trips.reducer';
+import { useHistory } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 function MyTrips() {
   const dispatch = useDispatch();
@@ -35,7 +37,7 @@ function MyTrips() {
 
   //update to change when trip data changes?
 
-  const trips = useSelector((store) => store.tripsReducer.trips); // Access trips from tripsReducer
+  const trips = useSelector((store) => store.tripsReducer.trips); // Access   trips from tripsReducer
   console.log('store is: ', trips[0]);
 
   const tripsList = trips.trips;
@@ -43,6 +45,12 @@ function MyTrips() {
 
   if (!Array.isArray(trips) || trips.length === 0) {
     return <div>No trips to display</div>;
+  }
+
+  let history = useHistory();
+
+  function newTrip() {
+    history.push(`/location`);
   }
 
   return (
@@ -55,9 +63,14 @@ function MyTrips() {
           <li key={trip.trip_id}>
             Location: {trip.trip_location}, Start: {trip.trip_start}, End:{' '}
             {trip.trip_end}
+            <Button>EDIT</Button>
+            <Button>DELETE</Button>
           </li>
         ))}
       </ul>
+      <Button onClick={newTrip} variant="outlined">
+        New Trip
+      </Button>
     </div>
   );
 }

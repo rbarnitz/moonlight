@@ -12,6 +12,10 @@ const SetDates = () => {
   //linking to MoonData page
   let history = useHistory();
 
+  //declare date variables:
+  let startDate = null;
+  let endDate = null;
+
   const user = useSelector((store) => store.user.id);
   console.log(user);
 
@@ -35,8 +39,8 @@ const SetDates = () => {
       // const dateStart = footer.props.children.props.children;
       // console.log('start is: ', dateStart);      const dateEnd = footer.props.children[1];
 
-      const startDate = footer.props.children[1].props.children[0];
-      const endDate = footer.props.children[1].props.children[2];
+      startDate = footer.props.children[1].props.children[0];
+      endDate = footer.props.children[1].props.children[2];
 
       console.log('start & end are: ', startDate, endDate);
     }
@@ -60,6 +64,9 @@ const SetDates = () => {
         onSelect={setRange}
         numberOfMonths={2}
       />
+
+      <p>Start Date is: {startDate}</p>
+      <p>End Date is: {endDate}</p>
 
       <Button onClick={handleNext} variant="outlined">
         Save Dates
