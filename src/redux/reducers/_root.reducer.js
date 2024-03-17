@@ -2,6 +2,8 @@ import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
 import tripsReducer from './trips.reducer';
+import locationReducer from './location.reducer';
+import createTripReducer from './dates.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -12,7 +14,9 @@ import tripsReducer from './trips.reducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  tripsReducer, //will contain any trips that match the user's ID number
+  tripsReducer, //will contain any trips that match user ID
+  locationReducer, //will contain searched location info
+  createTripReducer, //contains date range and location info from setdates
 });
 
 export default rootReducer;

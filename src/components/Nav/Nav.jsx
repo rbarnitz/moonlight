@@ -23,6 +23,9 @@ function Nav() {
             <Link className="navLink" to="/registration">
               Register
             </Link>
+            <Link className="navLink" to="/about">
+              About
+            </Link>
           </>
         )}
 
@@ -33,8 +36,8 @@ function Nav() {
               Home
             </Link>
 
-            <Link className="navLink" to="/info">
-              Info Page
+            <Link className="navLink" to="/mytrips">
+              My Trips
             </Link>
 
             <LogOutButton className="navLink" />

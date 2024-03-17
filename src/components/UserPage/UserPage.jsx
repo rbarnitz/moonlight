@@ -10,7 +10,7 @@ function UserPage() {
 
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
-  console.log(user);
+  console.log('from user: ', user);
 
   function myTrips() {
     history.push(`/mytrips/${user.id}`);

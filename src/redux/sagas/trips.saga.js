@@ -10,8 +10,17 @@ function* fetchTrips(action) {
   }
 }
 
+function* createTrip(action) {
+  try {
+    const response = yield axios.post(`/api/setdates`, action.payload);
+  } catch (error) {
+    console.log('User get request failed', error);
+  }
+}
+
 function* tripSaga() {
   yield takeLatest('FETCH_TRIPS', fetchTrips);
+  yield takeLatest('CREATE_TRIP', createTrip);
 }
 
 export default tripSaga;

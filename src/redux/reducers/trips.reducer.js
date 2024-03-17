@@ -14,4 +14,22 @@ const tripsReducer = (state = initialState, action) => {
   }
 };
 
+const startReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_START_DATE':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const endReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_END_DATE':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 export default tripsReducer;

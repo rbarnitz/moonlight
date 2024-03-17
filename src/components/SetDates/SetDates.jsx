@@ -11,13 +11,20 @@ import { DayPicker } from 'react-day-picker';
 const SetDates = () => {
   //linking to MoonData page
   let history = useHistory();
+  let dispatch = useDispatch();
 
   //declare date variables:
   let startDate = null;
   let endDate = null;
 
+  // pulling state info for testing
   const user = useSelector((store) => store.user.id);
-  console.log(user);
+  const locationInfo = useSelector((store) => store.locationReducer);
+  console.log('location info from state:', locationInfo);
+  const locationName = locationInfo.searchedLocation;
+  //console.log(user);
+
+  //initial template for trip dispatch
 
   //set range state
   const [range, setRange] = useState();
@@ -48,6 +55,18 @@ const SetDates = () => {
 
   //navigate to Calendar
   function handleNext() {
+    dispatch({
+      type: 'CREATE_TRIP',
+      payload: {
+        user_id: user,
+        trip_location: locationInfo.searchedLocation,
+        trip_latitude: locationInfo.latitude,
+        trip_longitude: locationInfo.longitude,
+        timezone: locationInfo.timezone,
+        trip_start: startDate,
+        trip_end: endDate,
+      },
+    });
     history.push(`/mytrips/${user}`);
   }
 
@@ -67,6 +86,7 @@ const SetDates = () => {
 
       <p>Start Date is: {startDate}</p>
       <p>End Date is: {endDate}</p>
+      <p>Location is: {locationName}</p>
 
       <Button onClick={handleNext} variant="outlined">
         Save Dates

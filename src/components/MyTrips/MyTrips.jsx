@@ -5,9 +5,18 @@ import { useParams } from 'react-router-dom';
 import store from '../../redux/store';
 import tripsReducer from '../../redux/reducers/trips.reducer';
 import { useHistory } from 'react-router-dom';
-import Button from '@mui/material/Button';
+import {
+  Button,
+  Box,
+  Card,
+  CardContent,
+  CardActions,
+  Typography,
+} from '@mui/material';
 
 function MyTrips() {
+  let history = useHistory();
+
   const dispatch = useDispatch();
 
   //set ID to URL ID
@@ -47,8 +56,6 @@ function MyTrips() {
     return <div>No trips to display</div>;
   }
 
-  let history = useHistory();
-
   function newTrip() {
     history.push(`/location`);
   }
@@ -58,16 +65,19 @@ function MyTrips() {
       {/* Display trips */}
       <h1>User ID is: {user}</h1>
       <h1>URL ID is: {userId}</h1>
-      <ul>
-        {trips.map((trip) => (
-          <li key={trip.trip_id}>
-            Location: {trip.trip_location}, Start: {trip.trip_start}, End:{' '}
-            {trip.trip_end}
+      {trips.map((trip) => (
+        <Box key={trip.trip_id} width="300px">
+          <CardContent>
+            <Typography variant="h5">Location: {trip.trip_location}</Typography>
+            Start: {trip.trip_start}, End: {trip.trip_end}
+          </CardContent>
+          <CardActions>
             <Button>EDIT</Button>
             <Button>DELETE</Button>
-          </li>
-        ))}
-      </ul>
+          </CardActions>
+        </Box>
+      ))}
+
       <Button onClick={newTrip} variant="outlined">
         New Trip
       </Button>

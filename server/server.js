@@ -10,6 +10,7 @@ const passport = require('./strategies/user.strategy');
 // Route Includes
 const userRouter = require('./routes/user.router');
 const tripsRouter = require('./routes/trips.router');
+const setDatesRouter = require('./routes/dates.router');
 
 // Express Middleware
 app.use(express.json());
@@ -27,6 +28,7 @@ app.use(passport.session());
 //register new routes here:
 app.use('/api/user', userRouter);
 app.use('/api/mytrips', tripsRouter);
+app.use('/api/setdates', setDatesRouter);
 
 // Listen Server & Port
 app.listen(PORT, () => {
