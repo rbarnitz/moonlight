@@ -14,6 +14,8 @@ import {
   Typography,
 } from '@mui/material';
 
+import './MyTrips.css';
+
 function MyTrips() {
   let history = useHistory();
 
@@ -65,18 +67,24 @@ function MyTrips() {
       {/* Display trips */}
       <h1>User ID is: {user}</h1>
       <h1>URL ID is: {userId}</h1>
-      {trips.map((trip) => (
-        <Box key={trip.trip_id} width="300px">
-          <CardContent>
-            <Typography variant="h5">Location: {trip.trip_location}</Typography>
-            Start: {trip.trip_start}, End: {trip.trip_end}
-          </CardContent>
-          <CardActions>
-            <Button>EDIT</Button>
-            <Button>DELETE</Button>
-          </CardActions>
-        </Box>
-      ))}
+      <section className="tripcards">
+        {trips.map((trip) => (
+          <Box key={trip.trip_id} width="400px" padding="10px">
+            <Card>
+              <CardContent>
+                <Typography variant="h5">
+                  Location: {trip.trip_location}
+                </Typography>
+                Start: {trip.trip_start}, End: {trip.trip_end}
+              </CardContent>
+              <CardActions>
+                <Button>EDIT</Button>
+                <Button>DELETE</Button>
+              </CardActions>
+            </Card>
+          </Box>
+        ))}
+      </section>
 
       <Button onClick={newTrip} variant="outlined">
         New Trip

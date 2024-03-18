@@ -72,7 +72,7 @@ const Location = () => {
   }
 
   return (
-    <div>
+    <div className="search">
       <Stack>
         <Box width="400px" p={2}>
           <TextField

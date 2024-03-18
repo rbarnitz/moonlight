@@ -1,16 +1,23 @@
 import React from 'react';
-
-// This is one of our simplest components
-// It doesn't have local state,
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is'
+import Box from '@mui/material/Box';
 
 function AboutPage() {
   return (
     <div className="container">
-      <div>
-        <p>This about page is for anyone to read!</p>
-      </div>
+      <Box width="400px" p={2}>
+        <div>
+          <p>
+            Moonlight is a tool to help you find when the moon will be out, and
+            how bright it will be! Simply search a location, then explore dates
+            you're interested in.
+          </p>
+          <br></br>
+          <p> Moonlight will display: </p>
+          <p>Moon rise times</p>
+          <p> moon set times</p>
+          <p> moon illumination</p>
+        </div>
+      </Box>
     </div>
   );
 }
