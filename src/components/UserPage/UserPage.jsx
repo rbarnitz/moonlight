@@ -24,13 +24,8 @@ function UserPage() {
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
-      <button onClick={myTrips} data-testid="toList">
-        My Trips
-      </button>{' '}
-      <button onClick={newTrip} data-testid="toList">
-        New Trip
-      </button>
+      <button onClick={myTrips}>My Trips</button>{' '}
+      <button onClick={newTrip}>New Trip</button>
     </div>
   );
 }
