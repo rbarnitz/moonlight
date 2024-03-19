@@ -36,6 +36,11 @@ const MoonData = () => {
     history.push(`/setdates/${user}`);
   }
 
+  //back to change location
+  function handleBack() {
+    history.push(`/location`);
+  }
+
   //format date to send to SunCalcs
   const dateData = selectedDay
     ? DateTime.fromJSDate(selectedDay).toISODate()
@@ -66,6 +71,9 @@ const MoonData = () => {
           footer={footer}
         />
         <p>Moon Data for {locationName}</p>
+        <Button onClick={handleBack} variant="outlined">
+          Change Location
+        </Button>
         <Button onClick={handleNext} variant="outlined">
           Next
         </Button>

@@ -55,7 +55,14 @@ function MyTrips() {
   console.log(trips[0]);
 
   if (!Array.isArray(trips) || trips.length === 0) {
-    return <div>No trips to display</div>;
+    return (
+      <>
+        <div>No trips to display</div>
+        <Button onClick={newTrip} variant="outlined">
+          New Trip
+        </Button>
+      </>
+    );
   }
 
   function newTrip() {

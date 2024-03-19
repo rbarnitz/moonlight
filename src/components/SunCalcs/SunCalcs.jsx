@@ -16,8 +16,10 @@ function SunCalcs({ latitude, longitude, timezone, startDate }) {
   const [moonsetTime, setMoonsetTime] = useState(null);
   const [moonsetAlternate, setMoonsetAlternate] = useState(null);
 
-  //pull data form suncalcs:
+  //pull data from suncalcs, illumination and phase percentage
   const illumination = SunCalc.getMoonIllumination(startDate).fraction;
+  const phase = SunCalc.getMoonIllumination(startDate).phase;
+
   //convert to percentage
   const percentage = (illumination * 100).toFixed(0);
   console.log('illumination is:', illumination);
@@ -66,7 +68,7 @@ function SunCalcs({ latitude, longitude, timezone, startDate }) {
   // <p>Set is: {moonTimes.}</p>
   return (
     <>
-      <MoonIcon illumination={illumination} />
+      <MoonIcon phase={phase} />
       <p>{percentage}%</p>
       <div>
         {moonriseTime && !moonsetTime ? (
