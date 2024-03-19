@@ -14,10 +14,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
 
 const Location = () => {
-  let lat = 123;
-  let lng = 456;
-  let searchedLocation = 'from Location file';
-  let timezone = 'Location timezone';
+  let lat = 0;
+  let lng = 0;
+  let searchedLocation = '';
+  let timezone = '';
 
   //set town reducer for API & search
   const [townName, setTownName] = useState('');
@@ -33,12 +33,12 @@ const Location = () => {
   const [resultName, setResultName] = useState('');
 
   //set test object for dispatch & saga testing
-  const testReturn = {
-    lat: '33.333',
-    lng: '44.444',
-    searchedLocation: 'Disneyland',
-    timezone: 'Moon Time',
-  };
+  // let testReturn = {
+  //   lat: '',
+  //   lng: '',
+  //   searchedLocation: '',
+  //   timezone: '',
+  // };
 
   //linking to MoonData page
   const history = useHistory();
@@ -50,20 +50,62 @@ const Location = () => {
 
   //set up asynch function for API testing
   const handleSearch = async () => {
-    console.log('search clicked', townName);
-    console.log('will dispatch this info later: ', testReturn);
-    setTownName(testReturn);
-    setLocationInfo(testReturn);
+    console.log('search for: ', townName);
+    //console.log('will dispatch this info later: ', testReturn);
+    //setTownName(testReturn);
+    //setLocationInfo(testReturn);
 
-    dispatch({
-      type: 'ADD_LOCATION_INFO',
-      payload: {
-        lat: lat,
-        lng: lng,
-        searchedLocation: searchedLocation,
-        timezone: timezone,
-      },
-    });
+    //API testing
+    try {
+      const response = await fetch(
+        `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(
+          townName
+        )}&key=c5bf905a37154ab79398510f969d8f54`
+      );
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch API result');
+      }
+
+      const APIResponse = await response.json();
+      console.log(
+        'first result, APIResponse.results[0]',
+        APIResponse.results[0]
+      );
+      console.log(
+        'first result, APIResponse.results[0]',
+        APIResponse.results[0].geometry
+      );
+      //declare result name:
+      searchedLocation = APIResponse.results[0].formatted;
+
+      //declaring latitude & longitude data:
+      lat = APIResponse.results[0].geometry.lat;
+      lng = APIResponse.results[0].geometry.lng;
+
+      //declaring timezone data:
+      //Other provided data:
+
+      // name: "Europe/Berlin"
+      // now_in_dst: 0
+      // offset_sec:3600
+      //offset_string:"+0100"
+      //short_name:"CET"
+      timezone = APIResponse.results[0].annotations.timezone.name;
+
+      dispatch({
+        type: 'ADD_LOCATION_INFO',
+        payload: {
+          lat: lat,
+          lng: lng,
+          searchedLocation: searchedLocation,
+          timezone: timezone,
+        },
+      });
+    } catch (error) {
+      console.error(error.message);
+      setCoordinates(null);
+    }
   };
 
   //navigate to Calendar

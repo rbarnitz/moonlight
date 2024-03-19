@@ -27,6 +27,10 @@ npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/icons-material
 npm install react-day-picker date-fns
 
+// installing dependencies for moon icons
+npm install react-icons
+npm install react-icons/wi
+
 //date install
 
 End with an example of getting some data out of the system or using it for a little demo
