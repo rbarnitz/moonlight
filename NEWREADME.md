@@ -31,6 +31,9 @@ npm install react-day-picker date-fns
 npm install react-icons
 npm install react-icons/wi
 
+//date manipulation
+npm install luxon
+
 //date install
 
 End with an example of getting some data out of the system or using it for a little demo

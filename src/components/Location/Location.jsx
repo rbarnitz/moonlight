@@ -32,14 +32,6 @@ const Location = () => {
   //search result: geotagged name
   const [resultName, setResultName] = useState('');
 
-  //set test object for dispatch & saga testing
-  // let testReturn = {
-  //   lat: '',
-  //   lng: '',
-  //   searchedLocation: '',
-  //   timezone: '',
-  // };
-
   //linking to MoonData page
   const history = useHistory();
 
@@ -51,11 +43,8 @@ const Location = () => {
   //set up asynch function for API testing
   const handleSearch = async () => {
     console.log('search for: ', townName);
-    //console.log('will dispatch this info later: ', testReturn);
-    //setTownName(testReturn);
-    //setLocationInfo(testReturn);
 
-    //API testing
+    //API call
     try {
       const response = await fetch(
         `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(
