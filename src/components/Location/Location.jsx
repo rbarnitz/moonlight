@@ -73,7 +73,7 @@ const Location = () => {
       // offset_sec:3600
       //offset_string:"+0100"
       //short_name:"CET"
-      timezone = APIResponse.results[0].annotations.timezone.name;
+      timezone = APIResponse.results[0].annotations.timezone.offset_string;
 
       dispatch({
         type: 'ADD_LOCATION_INFO',

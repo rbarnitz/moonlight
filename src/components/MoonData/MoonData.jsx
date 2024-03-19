@@ -24,6 +24,7 @@ const MoonData = () => {
   const locationName = locationInfo.searchedLocation;
   const latitude = locationInfo.latitude;
   const longitude = locationInfo.longitude;
+  const timezone = locationInfo.timezone;
 
   //linking to MoonData page
   let history = useHistory();
@@ -74,6 +75,7 @@ const MoonData = () => {
         <SunCalcs
           latitude={latitude}
           longitude={longitude}
+          timezone={timezone}
           startDate={selectedDay}
         />
         <MoonIcon />
