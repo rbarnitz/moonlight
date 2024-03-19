@@ -77,10 +77,8 @@ function MyTrips() {
                 </Typography>
                 Start: {trip.trip_start}, End: {trip.trip_end}
               </CardContent>
-              <CardActions>
-                <Button>EDIT</Button>
-                <Button>DELETE</Button>
-              </CardActions>
+              <Button>EDIT</Button>
+              <Button>DELETE</Button>
             </Card>
           </Box>
         ))}
