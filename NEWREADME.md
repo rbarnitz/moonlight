@@ -65,3 +65,32 @@ npm run server
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
+
+## Notes
+
+Moon logic:
+if rise < set : then it's a same-day cycle, easy
+no action
+if rise > set : then rise today, sets tomorrow  
+ retrieve tomorrow's moonset
+if only moonrise : then transition.
+retrieve tomorrow's moonset
+if only moonset : noon-ish set, no rise.
+"no moonrise today"
+
+For camping purposes:
+Want early-evening moonlight (Moon visibility period = 9-14hrs)
+
+<div>
+      {A && !B ? (
+        <p>{`Only A exists: A = ${A}, C = ${C}`}</p>
+      ) : B && !A ? (
+        <p>No rise today</p>
+      ) : A > B ? (
+        <p>{`A is greater than B: A = ${A}, C = ${C}`}</p>
+      ) : (
+        <p>{`A is less than or equal to B: A = ${A}, B = ${B}`}</p>
+      )}
+    </div>
+  );
+}
