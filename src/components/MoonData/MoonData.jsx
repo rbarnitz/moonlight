@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import './MoonData.css';
 import { format } from 'date-fns';
 import { useSelector } from 'react-redux';
-import MoonIcon from '../MoonIcon/MoonIcon';
 import SunCalcs from '../SunCalcs/SunCalcs';
 
 import { DayPicker } from 'react-day-picker';
@@ -78,7 +77,6 @@ const MoonData = () => {
           timezone={timezone}
           startDate={selectedDay}
         />
-        <MoonIcon />
       </div>
     </>
   );

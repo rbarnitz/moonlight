@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import SunCalc from 'suncalc';
 import { DateTime } from 'luxon';
+import MoonIcon from '../MoonIcon/MoonIcon';
 
 // // Basic functional component structure for React with default state
 // // value setup. When making a new component be sure to replace the
@@ -19,6 +20,7 @@ function SunCalcs({ latitude, longitude, timezone, startDate }) {
   const illumination = SunCalc.getMoonIllumination(startDate).fraction;
   //convert to percentage
   const percentage = (illumination * 100).toFixed(0);
+  console.log('illumination is:', illumination);
 
   useEffect(() => {
     const moonTimes = SunCalc.getMoonTimes(
@@ -63,29 +65,33 @@ function SunCalcs({ latitude, longitude, timezone, startDate }) {
   // <p>Rise is: {moonTimes}</p>
   // <p>Set is: {moonTimes.}</p>
   return (
-    <div>
-      {moonriseTime && !moonsetTime ? (
-        <div>
-          <p>Local rise is: {moonriseTime}</p>
-          <p>Next Day Set is: {moonsetAlternate}</p>
-        </div>
-      ) : moonsetTime && !moonriseTime ? (
-        <div>
-          <p>Local Set is: {moonsetTime}</p>
-          <p>There is no moonrise today</p>
-        </div>
-      ) : moonriseTime < moonsetTime ? (
-        <div>
-          <p>Local rise is: {moonriseTime}</p>
-          <p>Local Set is: {moonsetTime}</p>
-        </div>
-      ) : (
-        <div>
-          <p>Local rise is: {moonriseTime}</p>
-          <p>Next Day Set is: {moonsetAlternate}</p>
-        </div>
-      )}
-    </div>
+    <>
+      <MoonIcon illumination={illumination} />
+      <p>{percentage}%</p>
+      <div>
+        {moonriseTime && !moonsetTime ? (
+          <div>
+            <p>Local rise is: {moonriseTime}</p>
+            <p>Next Day Set is: {moonsetAlternate}</p>
+          </div>
+        ) : moonsetTime && !moonriseTime ? (
+          <div>
+            <p>Local Set is: {moonsetTime}</p>
+            <p>There is no moonrise today</p>
+          </div>
+        ) : moonriseTime < moonsetTime ? (
+          <div>
+            <p>Local rise is: {moonriseTime}</p>
+            <p>Local Set is: {moonsetTime}</p>
+          </div>
+        ) : (
+          <div>
+            <p>Local rise is: {moonriseTime}</p>
+            <p>Next Day Set is: {moonsetAlternate}</p>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
