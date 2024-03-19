@@ -22,15 +22,14 @@ const Location = () => {
   //set town reducer for API & search
   const [townName, setTownName] = useState('');
   const [locationInfo, setLocationInfo] = useState('');
+  const [searchSuccess, setSearchSuccess] = useState(false);
+  const [resultName, setResultName] = useState('');
 
   // dispatch for location returned API information
   const dispatch = useDispatch();
 
   //setting blank values for API info:
   const [coordinates, setCoordinates] = useState(null);
-
-  //search result: geotagged name
-  const [resultName, setResultName] = useState('');
 
   //linking to MoonData page
   const history = useHistory();
@@ -84,6 +83,10 @@ const Location = () => {
           timezone: timezone,
         },
       });
+
+      //display next button
+      setSearchSuccess(true);
+      setResultName(searchedLocation);
     } catch (error) {
       console.error(error.message);
       setCoordinates(null);
@@ -122,11 +125,14 @@ const Location = () => {
             }}
           />
         </Box>
-        <Box p={2}>
-          <Button onClick={handleNext} variant="outlined">
-            Next
-          </Button>
-        </Box>
+        {searchSuccess && (
+          <Box p={2}>
+            <p>{resultName}</p>
+            <Button onClick={handleNext} variant="outlined">
+              Next
+            </Button>
+          </Box>
+        )}
       </Stack>
     </div>
   );
