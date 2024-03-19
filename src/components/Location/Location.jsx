@@ -57,14 +57,7 @@ const Location = () => {
       }
 
       const APIResponse = await response.json();
-      console.log(
-        'first result, APIResponse.results[0]',
-        APIResponse.results[0]
-      );
-      console.log(
-        'first result, APIResponse.results[0]',
-        APIResponse.results[0].geometry
-      );
+
       //declare result name:
       searchedLocation = APIResponse.results[0].formatted;
 
