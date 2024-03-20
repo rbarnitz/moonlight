@@ -39,7 +39,7 @@ const Location = () => {
     setTownName(event.target.value);
   };
 
-  //set up asynch function for API testing
+  //set up async function for API testing
   const handleSearch = async () => {
     console.log('search for: ', townName);
 

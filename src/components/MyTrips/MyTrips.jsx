@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import store from '../../redux/store';
 import tripsReducer from '../../redux/reducers/trips.reducer';
 import { useHistory } from 'react-router-dom';
+import { DateTime } from 'luxon';
 import {
   Button,
   Box,
@@ -46,8 +47,6 @@ function MyTrips() {
     return <div>Sorry, you are not authorized to view these trips.</div>;
   }
 
-  //update to change when trip data changes?
-
   const trips = useSelector((store) => store.tripsReducer.trips); // Access   trips from tripsReducer
   console.log('store is: ', trips[0]);
 
@@ -65,6 +64,17 @@ function MyTrips() {
     );
   }
 
+  //function to get range of dates in the selected trip
+  function fetchRange(trip) {
+    console.log('range is: ', trip.trip_start, trip.trip_end);
+
+    const startObject = DateTime.fromFormat(trip.trip_start, 'MMMM ddd, yyyy');
+
+    let startRange = startObject.toJSDate();
+    console.log('StartRange is: ', startRange);
+  }
+
+  //navigating to begin new trip
   function newTrip() {
     history.push(`/location`);
   }
@@ -84,6 +94,7 @@ function MyTrips() {
                 </Typography>
                 Start: {trip.trip_start}, End: {trip.trip_end}
               </CardContent>
+              <Button onClick={() => fetchRange(trip)}>View</Button>
               <Button>EDIT</Button>
               <Button>DELETE</Button>
             </Card>

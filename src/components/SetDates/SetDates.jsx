@@ -29,16 +29,23 @@ const SetDates = () => {
   //set range state
   const [range, setRange] = useState();
 
+  //declare dispatch dates
+  let dispatchStart = '';
+  let dispatchEnd = '';
+
   let footer = <p>Pick a date!</p>;
   if (range?.from) {
     if (!range.to) {
       footer = <p>{format(range.from, 'PPP')}</p>;
     } else if (range.to) {
+      dispatchStart = range.from;
+      dispatchEnd = range.to;
+
       footer = (
         <>
           <p>Selected dates:</p>
           <p>
-            {format(range.from, 'PPP')}–{format(range.to, 'PPP')}
+            {format(range.from, 'PPP')}–{format(range.to, 'P')}
           </p>
         </>
       );
@@ -48,6 +55,8 @@ const SetDates = () => {
 
       startDate = footer.props.children[1].props.children[0];
       endDate = footer.props.children[1].props.children[2];
+
+      //create array containing all of the dates within this range
 
       console.log('start & end are: ', startDate, endDate);
     }
