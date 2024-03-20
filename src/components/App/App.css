@@ -2,8 +2,12 @@ html,
 body,
 #react-root {
   height: 100%;
+  width: 100%;
   display: flex;
-  text-align: center;
+  flex-direction: column;
+
+  background-image: url('https://images.unsplash.com/photo-1487621167305-5d248087c724');
+  background-size: cover;
 }
 
 body {

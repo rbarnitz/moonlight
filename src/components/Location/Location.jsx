@@ -64,14 +64,7 @@ const Location = () => {
       lat = APIResponse.results[0].geometry.lat;
       lng = APIResponse.results[0].geometry.lng;
 
-      //declaring timezone data:
-      //Other provided data:
-
-      // name: "Europe/Berlin"
-      // now_in_dst: 0
-      // offset_sec:3600
-      //offset_string:"+0100"
-      //short_name:"CET"
+      //declaring timezone data & retrieving offset time timezone info
       timezone = APIResponse.results[0].annotations.timezone.offset_string;
 
       dispatch({
@@ -99,8 +92,8 @@ const Location = () => {
   }
 
   return (
-    <div className="search">
-      <Stack>
+    <div>
+      <Stack className="container">
         <Box width="400px" p={2}>
           <TextField
             id="outlined-basic"

@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux';
 import SunCalcs from '../SunCalcs/SunCalcs';
 
 import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
+
 import Button from '@mui/material/Button';
 //date dependencies
 import { DateTime } from 'luxon';
