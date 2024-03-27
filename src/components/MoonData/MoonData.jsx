@@ -5,11 +5,10 @@ import './MoonData.css';
 import { format } from 'date-fns';
 import { useSelector } from 'react-redux';
 import SunCalcs from '../SunCalcs/SunCalcs';
-
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
+import { Button, Grid, Box } from '@mui/material';
 
-import Button from '@mui/material/Button';
 //date dependencies
 import { DateTime } from 'luxon';
 
@@ -63,15 +62,37 @@ const MoonData = () => {
   console.log('selected day unformatted', selectedDay);
 
   return (
-    <>
-      <div>
-        <h1>Moon Data</h1>
-        <DayPicker
-          mode="single"
-          selected={selectedDay}
-          onSelect={setSelectedDay}
-          footer={footer}
-        />
+    <Box>
+      <h1>Moon Data</h1>
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <div style={{ textAlign: 'center' }}>
+            <DayPicker
+              mode="single"
+              selected={selectedDay}
+              onSelect={setSelectedDay}
+              footer={footer}
+              className="moondata-daypicker" // Add a custom class name
+            />
+          </div>
+        </Grid>
+        <Grid item xs={6}>
+          <div
+            style={{
+              justifyContent: 'flex-start',
+              paddingLeft: '30px',
+            }}
+          >
+            <SunCalcs
+              latitude={latitude}
+              longitude={longitude}
+              timezone={timezone}
+              startDate={selectedDay}
+            />
+          </div>
+        </Grid>
+      </Grid>
+      <div style={{ textAlign: 'center' }}>
         <p>Moon Data for {locationName}</p>
         <Button onClick={handleBack} variant="outlined">
           Change Location
@@ -80,15 +101,7 @@ const MoonData = () => {
           Next
         </Button>
       </div>
-      <div>
-        <SunCalcs
-          latitude={latitude}
-          longitude={longitude}
-          timezone={timezone}
-          startDate={selectedDay}
-        />
-      </div>
-    </>
+    </Box>
   );
 };
 

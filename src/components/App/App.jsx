@@ -23,6 +23,7 @@ import MyTrips from '../MyTrips/MyTrips';
 import Location from '../Location/Location';
 import MoonData from '../MoonData/MoonData';
 import SetDates from '../SetDates/SetDates';
+import EditTrip from '../EditTrip/EditTrip';
 
 import './App.css';
 
@@ -123,6 +124,10 @@ function App() {
 
           <Route exact path="/location">
             <Location />
+          </Route>
+
+          <Route exact path="/edittrip">
+            <EditTrip />
           </Route>
 
           <Route exact path="/moondata">

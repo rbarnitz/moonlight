@@ -3,3 +3,20 @@
   flex-wrap: wrap;
   text-align: center;
 }
+
+.card {
+  background-color: rgba(
+    233,
+    226,
+    226,
+    0.35
+  ); /* Adjust the alpha value (0.0 - 1.0) for transparency */
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.cardcontent {
+  background-color: transparent;
+  /* Other styles for the card content */
+}

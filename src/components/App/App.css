@@ -5,7 +5,6 @@ body,
   width: 100%;
   display: flex;
   flex-direction: column;
-
   background-image: url('https://images.unsplash.com/photo-1487621167305-5d248087c724');
   background-size: cover;
 }
@@ -115,4 +114,8 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+}
+
+.MuiInputBase-root {
+  background-color: transparent !important;
 }

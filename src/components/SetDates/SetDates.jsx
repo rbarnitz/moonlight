@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './SetDates.css';
 import { format } from 'date-fns';
+import './SetDates.css';
 
 import Button from '@mui/material/Button';
 //import DateRange from 'react-day-picker/es/DateRange';
@@ -80,7 +81,7 @@ const SetDates = () => {
   }
 
   return (
-    <div>
+    <div className="container">
       <h1>Set Dates</h1>
 
       <br></br>

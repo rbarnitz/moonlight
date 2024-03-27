@@ -92,8 +92,8 @@ const Location = () => {
   }
 
   return (
-    <div>
-      <Stack className="container">
+    <div className="container">
+      <Stack>
         <Box width="400px" p={2}>
           <TextField
             id="outlined-basic"

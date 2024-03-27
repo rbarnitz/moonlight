@@ -12,10 +12,15 @@ function MoonIcon(phase) {
   const [heading, setHeading] = useState('MoonIcon Page');
 
   let imageURL = '';
+
+  //setting image for first half of moon icon phases
   const waxingPhases = (phase.phase * 2).toFixed(3);
+
+  //setting for second half
   let waningPhases = 2 - waxingPhases;
+
+  //reducing decimal places
   let reduced = waningPhases.toFixed(3);
-  console.log('phase is: ', phase.phase, waxingPhases, reduced);
 
   if (phase.phase <= 0.5) {
     imageURL = `https://www.timeanddate.com/scripts/moon.php?i=${waxingPhases}`;
@@ -25,8 +30,8 @@ function MoonIcon(phase) {
 
   https: return (
     <div>
-      <p>Phase is:</p>
-      <p>{phase.phase}</p>
+      <p></p>
+
       <img
         src={imageURL}
         alt="Loaded Moon Icon"

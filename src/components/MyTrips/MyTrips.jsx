@@ -13,6 +13,10 @@ import {
   CardContent,
   CardActions,
   Typography,
+  Paper,
+  Stack,
+  Alert,
+  AlertTitle,
 } from '@mui/material';
 
 import './MyTrips.css';
@@ -79,6 +83,17 @@ function MyTrips() {
     history.push(`/location`);
   }
 
+  function deleteTrip() {
+    console.log('trying to delete?');
+    return <Alert severity="warning">This is a warning Alert.</Alert>;
+  }
+
+  //navigating to edit trip
+  function editTrip() {
+    console.log('editing trip');
+    history.push(`/edittrip`);
+  }
+
   return (
     <div>
       {/* Display trips */}
@@ -86,18 +101,16 @@ function MyTrips() {
       <h1>URL ID is: {userId}</h1>
       <section className="tripcards">
         {trips.map((trip) => (
-          <Box key={trip.trip_id} width="400px" padding="10px">
-            <Card>
-              <CardContent>
-                <Typography variant="h5">
-                  Location: {trip.trip_location}
-                </Typography>
-                Start: {trip.trip_start}, End: {trip.trip_end}
-              </CardContent>
-              <Button onClick={() => fetchRange(trip)}>View</Button>
-              <Button>EDIT</Button>
-              <Button>DELETE</Button>
-            </Card>
+          <Box key={trip.trip_id} width="400px" className="card">
+            <CardContent className="cardcontent">
+              <Typography variant="h5">
+                Location: {trip.trip_location}
+              </Typography>
+              Start: {trip.trip_start}, End: {trip.trip_end}
+            </CardContent>
+            <Button onClick={() => fetchRange(trip)}>View</Button>
+            <Button onClick={editTrip}>EDIT</Button>
+            <Button onClick={deleteTrip}>DELETE</Button>
           </Box>
         ))}
       </section>

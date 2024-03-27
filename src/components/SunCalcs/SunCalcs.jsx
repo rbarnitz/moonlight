@@ -69,7 +69,7 @@ function SunCalcs({ latitude, longitude, timezone, startDate }) {
   return (
     <>
       <MoonIcon phase={phase} />
-      <p>{percentage}%</p>
+      <p>Illumination: {percentage}%</p>
       <div>
         {moonriseTime && !moonsetTime ? (
           <div>

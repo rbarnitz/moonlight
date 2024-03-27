@@ -94,3 +94,32 @@ Want early-evening moonlight (Moon visibility period = 9-14hrs)
     </div>
   );
 }
+
+Edit Notes:
+
+Changed app location
+sent history push to editTrips
+
+To Do:
+parameters to edit specific trip
+
+Delete:
+parameters to delete specific trip
+Alert not working, fix.
+
+To Do small Tasks:
+color styles/themes
+footer to bottom of page
+scroll-down background for my trips
+moondata - borders for moondata boxes
+moondata - format moondata buttons
+
+fix my trips header link with : `/mytrips/${user.id}`
+
+color fix
+dayes to database changing bassed on Australia
+css property of background-attachment: 'fixed'
+
+background prop to cover visible space background-size: cover
+
+remove proteected route on first pages
