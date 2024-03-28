@@ -126,7 +126,7 @@ function App() {
             <Location />
           </Route>
 
-          <Route exact path="/edittrip">
+          <Route path="/edittrip/:id" exact>
             <EditTrip />
           </Route>
 

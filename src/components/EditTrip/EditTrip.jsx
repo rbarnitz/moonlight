@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { DayPicker } from 'react-day-picker';
-
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import {
   Stack,
-  Button,
   Box,
   TextField,
   IconButton,
@@ -12,11 +11,23 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 
 function EditTrip() {
-  //set range state
+  // Set variables
+  const { id } = useParams(); // Use 'id' here
+
+  // Setting new input information
   const [range, setRange] = useState();
+  const [location, setLocation] = useState();
+
+  // useEffect(() => {
+  //   axios.get(`/api/edittrip/${id}`);
+
+  // }, []);
+
+  console.log('Trip ID is: ', id);
 
   return (
     <>
+      <p>ID is: {id}</p>
       <div className="container">
         <Stack>
           <Box width="400px" p={2}>
@@ -40,14 +51,7 @@ function EditTrip() {
         </Stack>
       </div>
 
-      <DayPicker
-        mode="range"
-        min={2}
-        max={6}
-        selected={range}
-        onSelect={setRange}
-        numberOfMonths={2}
-      />
+      {/* DayPicker Component */}
     </>
   );
 }

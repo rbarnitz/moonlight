@@ -69,13 +69,13 @@ function MyTrips() {
   }
 
   //function to get range of dates in the selected trip
-  function fetchRange(trip) {
+  function fetchTrip(trip) {
     console.log('range is: ', trip.trip_start, trip.trip_end);
 
-    const startObject = DateTime.fromFormat(trip.trip_start, 'MMMM ddd, yyyy');
+    //const startObject = DateTime.fromFormat(trip.trip_start, 'MMMM ddd, yyyy');
 
-    let startRange = startObject.toJSDate();
-    console.log('StartRange is: ', startRange);
+    // let startRange = startObject.toJSDate();
+    // console.log('StartRange is: ', startRange);
   }
 
   //navigating to begin new trip
@@ -83,15 +83,15 @@ function MyTrips() {
     history.push(`/location`);
   }
 
-  function deleteTrip() {
-    console.log('trying to delete?');
+  function deleteTrip(id) {
+    console.log('trying to delete trip: ', id);
     return <Alert severity="warning">This is a warning Alert.</Alert>;
   }
 
   //navigating to edit trip
-  function editTrip() {
-    console.log('editing trip');
-    history.push(`/edittrip`);
+  function editTrip(id) {
+    console.log('editing trip: ', id);
+    history.push(`/edittrip/${id}`);
   }
 
   return (
@@ -108,9 +108,9 @@ function MyTrips() {
               </Typography>
               Start: {trip.trip_start}, End: {trip.trip_end}
             </CardContent>
-            <Button onClick={() => fetchRange(trip)}>View</Button>
-            <Button onClick={editTrip}>EDIT</Button>
-            <Button onClick={deleteTrip}>DELETE</Button>
+            <Button onClick={() => fetchTrip(trip.trip_id)}>View</Button>
+            <Button onClick={() => editTrip(trip.trip_id)}>EDIT</Button>
+            <Button onClick={() => deleteTrip(trip.trip_id)}>DELETE</Button>
           </Box>
         ))}
       </section>
