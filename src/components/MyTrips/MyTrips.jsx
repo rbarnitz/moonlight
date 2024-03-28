@@ -76,7 +76,9 @@ function MyTrips() {
 
   function deleteTrip(id) {
     console.log('trying to delete trip: ', id);
+
     //return <Alert severity="warning">This is a warning Alert.</Alert>;
+
     dispatch({ type: 'DELETE_TRIP', payload: id });
   }
 

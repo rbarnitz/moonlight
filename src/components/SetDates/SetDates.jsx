@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './SetDates.css';
 import { format } from 'date-fns';
+import { DateTime, Interval } from 'luxon';
+
 import './SetDates.css';
 
 import Button from '@mui/material/Button';
@@ -21,7 +23,7 @@ const SetDates = () => {
   // pulling state info for testing
   const user = useSelector((store) => store.user.id);
   const locationInfo = useSelector((store) => store.locationReducer);
-  console.log('location info from state:', locationInfo);
+  //console.log('location info from state:', locationInfo);
   const locationName = locationInfo.searchedLocation;
   //console.log(user);
 
@@ -39,27 +41,30 @@ const SetDates = () => {
     if (!range.to) {
       footer = <p>{format(range.from, 'PPP')}</p>;
     } else if (range.to) {
-      dispatchStart = range.from;
-      dispatchEnd = range.to;
+      dispatchStart = DateTime.fromJSDate(range.from);
+      dispatchEnd = DateTime.fromJSDate(range.to);
+      console.log('JS Date: ', dispatchStart);
+
+      // const intervals = Interval.fromDateTimes(
+      //   startDateTime.startOf('day'),
+      //   endDateTime.endOf('day')
+      // )
+      //   .splitBy({ day: 1 })
+      //   .map((d) => d.start);
+      // console.log('interval is  ', intervals);
+
+      startDate = dispatchStart.toISO(); // Convert to ISO 8601 string
+      endDate = dispatchEnd.toISO(); // Convert to ISO 8601 string
+      console.log('ISO Date: ', startDate);
 
       footer = (
         <>
           <p>Selected dates:</p>
           <p>
-            {format(range.from, 'PPP')}–{format(range.to, 'P')}
+            {format(range.from, 'PPP')}–{format(range.to, 'PPP')}
           </p>
         </>
       );
-      console.log('date range is:', footer.props.children);
-      // const dateStart = footer.props.children.props.children;
-      // console.log('start is: ', dateStart);      const dateEnd = footer.props.children[1];
-
-      startDate = footer.props.children[1].props.children[0];
-      endDate = footer.props.children[1].props.children[2];
-
-      //create array containing all of the dates within this range
-
-      console.log('start & end are: ', startDate, endDate);
     }
   }
 
