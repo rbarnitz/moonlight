@@ -4,6 +4,7 @@ import user from './user.reducer';
 import tripsReducer from './trips.reducer';
 import locationReducer from './location.reducer';
 import createTripReducer from './dates.reducer';
+import editReducer from './edit.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   tripsReducer, //will contain any trips that match user ID
   locationReducer, //will contain searched location info
   createTripReducer, //contains date range and location info from setdates
+  editReducer,
 });
 
 export default rootReducer;

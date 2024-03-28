@@ -24,6 +24,7 @@ import Location from '../Location/Location';
 import MoonData from '../MoonData/MoonData';
 import SetDates from '../SetDates/SetDates';
 import EditTrip from '../EditTrip/EditTrip';
+import ViewTrip from '../ViewTrip.jsx/ViewTrip';
 
 import './App.css';
 
@@ -128,6 +129,10 @@ function App() {
 
           <Route path="/edittrip/:id" exact>
             <EditTrip />
+          </Route>
+
+          <Route path="/viewtrip/:id" exact>
+            <ViewTrip />
           </Route>
 
           <Route exact path="/moondata">

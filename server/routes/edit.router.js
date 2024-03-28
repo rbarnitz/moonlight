@@ -11,25 +11,6 @@ const router = express.Router();
  * GET route template
  */
 
-router.get('/:id', rejectUnauthenticated, (req, res) => {
-  //pull user ID to fetch trip data
-  // const userID = req.user.id;
-  // console.log('current user ID:', userID);
-  const query = `SELECT * FROM
-  "trips" WHERE "trips".trip_id = $1;`;
-
-  pool
-    .query(query, [req.params.id])
-    .then((result) => {
-      //return all trips matching this ID
-      res.send(result.rows);
-    })
-    .catch((err) => {
-      console.log('ERROR: Get trip details', err);
-      res.sendStatus(500);
-    });
-});
-
 /**
  * POST route template
  * //get info from store, to req
@@ -104,6 +85,22 @@ router.post('/', (req, res) => {
       console.log('ERROR: Posting trip ', err);
       res.sendStatus(500);
     });
+
+  router.delete('/:id', rejectUnauthenticated, (req, res) => {
+    const deleteQuery = `DELETE FROM "trips" WHERE "trip_id" = $1;`;
+
+    pool;
+    console
+      .log([req.params.id])
+      .query(deleteQuery, [req.params.id])
+      .then((result) => {
+        res.sendStatus(200);
+      })
+      .catch((err) => {
+        console.log('ERROR: Delete trip', err);
+        res.sendStatus(500);
+      });
+  });
 });
 
 module.exports = router;

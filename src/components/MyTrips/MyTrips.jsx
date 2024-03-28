@@ -31,8 +31,6 @@ function MyTrips() {
 
   //retrieve logged-in user info:
   const user = useSelector((store) => store.user.id);
-  console.log('user ID is: ', user);
-  console.log('URL ID is: ', userId);
 
   const authenticatedUserID = userId;
 
@@ -52,10 +50,8 @@ function MyTrips() {
   }
 
   const trips = useSelector((store) => store.tripsReducer.trips); // Access   trips from tripsReducer
-  console.log('store is: ', trips[0]);
 
   const tripsList = trips.trips;
-  console.log(trips[0]);
 
   if (!Array.isArray(trips) || trips.length === 0) {
     return (
@@ -69,13 +65,8 @@ function MyTrips() {
   }
 
   //function to get range of dates in the selected trip
-  function fetchTrip(trip) {
-    console.log('range is: ', trip.trip_start, trip.trip_end);
-
-    //const startObject = DateTime.fromFormat(trip.trip_start, 'MMMM ddd, yyyy');
-
-    // let startRange = startObject.toJSDate();
-    // console.log('StartRange is: ', startRange);
+  function viewTrip(id) {
+    history.push(`/viewtrip/${id}`);
   }
 
   //navigating to begin new trip
@@ -85,7 +76,8 @@ function MyTrips() {
 
   function deleteTrip(id) {
     console.log('trying to delete trip: ', id);
-    return <Alert severity="warning">This is a warning Alert.</Alert>;
+    //return <Alert severity="warning">This is a warning Alert.</Alert>;
+    dispatch({ type: 'DELETE_TRIP', payload: id });
   }
 
   //navigating to edit trip
@@ -108,7 +100,7 @@ function MyTrips() {
               </Typography>
               Start: {trip.trip_start}, End: {trip.trip_end}
             </CardContent>
-            <Button onClick={() => fetchTrip(trip.trip_id)}>View</Button>
+            <Button onClick={() => viewTrip(trip.trip_id)}>View</Button>
             <Button onClick={() => editTrip(trip.trip_id)}>EDIT</Button>
             <Button onClick={() => deleteTrip(trip.trip_id)}>DELETE</Button>
           </Box>

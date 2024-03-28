@@ -18,27 +18,44 @@ function* createTrip(action) {
   }
 }
 
-// function* deleteTrip(action) {
-//   try {
-//     const response = yield axios.post(
-//       `/api/mytrips/${action.payload}`,
-//       action.payload
-//     );
-//   } catch (error) {
-//     console.log('User get request failed', error);
-//   }
-// }
+function* deleteTrip(action) {
+  try {
+    const tripId = encodeURIComponent(action.payload);
+    console.log(tripId);
 
-// function*  editTrip(action) {
-//   yield axios.put(`/api/edittrip/${action.payload}`, action.payload);
-//   if action.history
-// }
+    const response = yield axios.delete(`/api/edittrip/${tripId}`);
+  } catch (error) {
+    console.log('User delete request failed', error);
+  }
+}
+
+function* viewTrip(action) {
+  try {
+    const response = yield axios.get(`/api/edittrip/${action.payload}`);
+    yield put({ type: 'SET_TRIP_TO_EDIT', payload: response.data });
+  } catch (error) {
+    console.log('User get request failed', error);
+  }
+}
+
+function* editTrip(action) {
+  try {
+    yield axios.put(
+      `/api/edittrip/${action.payload.tripId}`,
+      action.payload.tripData
+    );
+    // You can dispatch another action here after the edit is successful if needed
+  } catch (error) {
+    console.log('User put request failed', error);
+  }
+}
 
 function* tripSaga() {
   yield takeLatest('FETCH_TRIPS', fetchTrips);
   yield takeLatest('CREATE_TRIP', createTrip);
-  // yield takeLatest('DELETE_TRIP', deleteTrip);
-  //yield takeLatest('EDIT_TRIP', editTrip);
+  yield takeLatest('DELETE_TRIP', deleteTrip);
+  yield takeLatest('VIEW_TRIP', viewTrip);
+  yield takeLatest('EDIT_TRIP', editTrip);
 }
 
 export default tripSaga;
