@@ -101,7 +101,7 @@ Changed app location
 sent history push to editTrips
 
 To Do:
-parameters to edit specific trip
+parameters to edit specific trip [x]
 
 Delete:
 parameters to delete specific trip
@@ -114,12 +114,6 @@ scroll-down background for my trips
 moondata - borders for moondata boxes
 moondata - format moondata buttons
 
-fix my trips header link with : `/mytrips/${user.id}`
-
 color fix
-dayes to database changing bassed on Australia
+days to database changing based on Australia
 css property of background-attachment: 'fixed'
-
-background prop to cover visible space background-size: cover
-
-remove proteected route on first pages

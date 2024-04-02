@@ -85,6 +85,11 @@ const SetDates = () => {
     history.push(`/mytrips/${user}`);
   }
 
+  function formatDate(dateInput) {
+    const dateTime = DateTime.fromISO(dateInput, { zone: 'utc' });
+    return dateTime.toFormat('MMMM d, yyyy');
+  }
+
   return (
     <div className="container">
       <h1>Set Dates</h1>
@@ -99,8 +104,8 @@ const SetDates = () => {
         numberOfMonths={2}
       />
 
-      <p>Start Date is: {startDate}</p>
-      <p>End Date is: {endDate}</p>
+      <p>Start Date is: {formatDate(startDate)}</p>
+      <p>End Date is: {formatDate(endDate)}</p>
       <p>Location is: {locationName}</p>
 
       <Button onClick={handleNext} variant="outlined">

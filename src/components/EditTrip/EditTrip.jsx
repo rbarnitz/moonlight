@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import {
+  Button,
+  Box,
+  Card,
+  CardContent,
+  CardActions,
+  Typography,
+  Paper,
+  Stack,
+} from '@mui/material';
 
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
+// import Accordion from '@mui/material/Accordion';
+// import AccordionDetails from '@mui/material/AccordionDetails';
+// import AccordionSummary from '@mui/material/AccordionSummary';
 
-import { Button } from '@mui/material';
-
-function EditTrip() {
+function EditTrip(tripInfo) {
   const { id } = useParams();
-  const [user, setUser] = useState();
-  const [location, setLocation] = useState();
-  const [latitude, setLatitude] = useState();
-  const [longitude, setLongitude] = useState();
-  const [timezone, setTimezone] = useState();
-  const [start, setStart] = useState();
-  const [end, setEnd] = useState();
+  const [trip, setTrip] = useState(null);
+  let history = useHistory();
+  const user = useSelector((store) => store.user.id);
 
+  //retrieve trip data to display
   useEffect(() => {
     const fetchTrip = async () => {
       try {
@@ -31,30 +38,23 @@ function EditTrip() {
     fetchTrip();
   }, [id]);
 
-  if (!trip) {
-    return <div>Loading...</div>;
-  }
+  const trips = useSelector((store) => store.tripsReducer.trips); // Access   trips from tripsReducer
+  console.log('trip info: ', trip);
 
-  function submitChanges() {
-    setLocation('test');
-    console.log(location);
-
-    //dispatch 'EDIT_TRIP'
+  function submitEdit() {
+    console.log('editing trip: ', tripInfo);
+    dispatch({ type: 'EDIT_TRIP', payload: tripInfo });
   }
-  console.log(trip);
 
   return (
     <div>
-      <h1>View Trip Details</h1>
-      <p>Location: {trip.trip_location}</p>
-      <p>Start: {trip.trip_start}</p>
-      <p>End: {trip.trip_end}</p>
-      <Button
-        onClick={() => {
-          submitChanges;
-        }}
-      >
-        Save Changes
+      <p>Edit here</p>
+      <p>Location {trip.trip_location}</p>
+      <p>Trip Start {trip.trip_start}</p>
+      <p>Trip End {trip.trip_end}</p>
+
+      <Button onClick={submitEdit} variant="outlined">
+        Submit Changes
       </Button>
     </div>
   );

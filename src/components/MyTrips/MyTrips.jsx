@@ -88,6 +88,12 @@ function MyTrips() {
     history.push(`/edittrip/${id}`);
   }
 
+  //allow date objects to be formatted as they are mapped
+  function formatDate(dateInput) {
+    const dateTime = DateTime.fromISO(dateInput, { zone: 'utc' });
+    return dateTime.toFormat('MMMM d, yyyy');
+  }
+
   return (
     <div>
       {/* Display trips */}
@@ -100,7 +106,8 @@ function MyTrips() {
               <Typography variant="h5">
                 Location: {trip.trip_location}
               </Typography>
-              Start: {trip.trip_start}, End: {trip.trip_end}
+              Start: {formatDate(trip.trip_start)}, End:{' '}
+              {formatDate(trip.trip_end)}
             </CardContent>
             <Button onClick={() => viewTrip(trip.trip_id)}>View</Button>
             <Button onClick={() => editTrip(trip.trip_id)}>EDIT</Button>

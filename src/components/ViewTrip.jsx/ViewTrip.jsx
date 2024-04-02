@@ -1,12 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import {
+  Box,
+  Card,
+  Button,
+  CardContent,
+  Grid,
+  Typography,
+} from '@mui/material';
+import SunCalcs from '../SunCalcs/SunCalcs';
+import { useHistory } from 'react-router-dom';
+
+import { useSelector } from 'react-redux';
+
 import { Interval, DateTime } from 'luxon';
 
 function ViewTrip() {
   const { id } = useParams();
   const [trip, setTrip] = useState(null);
   const [dateList, setDateList] = useState([]);
+  let history = useHistory();
+
+  const user = useSelector((store) => store.user.id);
 
   function dateRange(start, end) {
     start = DateTime.fromISO(start);
@@ -49,20 +65,54 @@ function ViewTrip() {
   }
 
   console.log('dateList:', dateList);
+  console.log('trip data ', trip);
+
+  function myTrips(id) {
+    history.push(`/mytrips/${user}`);
+  }
+
+  //allow date objects to be formatted as they are mapped
+  function formatDate(dateInput) {
+    const dateTime = DateTime.fromISO(dateInput, { zone: 'utc' });
+    return dateTime.toFormat('MMMM d, yyyy');
+  }
 
   return (
     <div>
-      <h1>View Trip Details</h1>
-      <p>Location: {trip.trip_location}</p>
-      <p>Start: {trip.trip_start}</p>
-      <p>End: {trip.trip_end}</p>
+      <Grid container spacing={2}>
+        <Grid item xs={6} style={{ textAlign: 'center' }}>
+          <h1>View Trip Details</h1>
+          <p>Location: {trip.trip_location}</p>
+          <p>Beginning: {formatDate(trip.trip_start)}</p>
+          <p>Ending: {formatDate(trip.trip_end)}</p>
+          <Button onClick={myTrips} variant="outlined">
+            Back
+          </Button>{' '}
+        </Grid>
 
-      <h2>Dates Within the Trip Range:</h2>
-      <ul>
-        {dateList.map((date, index) => (
-          <li key={index}>{date.toISODate()}</li>
-        ))}
-      </ul>
+        <Grid item xs={6}>
+          <section
+            style={{
+              justifyContent: 'flex-start',
+              paddingLeft: '30px',
+            }}
+            className="datecards"
+          >
+            {dateList.map((date, index) => (
+              <Box key={index} width="500px" height="300px" className="card">
+                <CardContent className="cardcontent">
+                  <SunCalcs
+                    latitude={trip.trip_latitude}
+                    longitude={trip.trip_longitude}
+                    timezone={trip.timezone}
+                    startDate={new Date(date)}
+                  />
+                </CardContent>
+              </Box>
+            ))}
+          </section>
+        </Grid>
+      </Grid>
     </div>
   );
 }

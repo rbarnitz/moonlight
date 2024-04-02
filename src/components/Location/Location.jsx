@@ -86,6 +86,12 @@ const Location = () => {
     }
   };
 
+  const handleEnter = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   //navigate to Calendar
   function handleNext() {
     history.push('/moondata');
@@ -103,6 +109,7 @@ const Location = () => {
             value={townName}
             onChange={handleInputChange}
             color="success"
+            onKeyPress={handleEnter}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">

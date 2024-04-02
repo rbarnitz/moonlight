@@ -4,12 +4,16 @@ import SunCalc from 'suncalc';
 import { DateTime } from 'luxon';
 import MoonIcon from '../MoonIcon/MoonIcon';
 
-// // Basic functional component structure for React with default state
-// // value setup. When making a new component be sure to replace the
-// // component name TemplateFunction with the name for the new component.
 function SunCalcs({ latitude, longitude, timezone, startDate }) {
-  //   // Using hooks we're creating local state for a "heading" variable with
-  //   // a default value of 'Functional Component'
+  console.log(
+    'suncalc inputs',
+    latitude,
+    longitude,
+    timezone,
+    'date',
+    startDate
+  );
+
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Sun Calcs');
   const [moonriseTime, setMoonriseTime] = useState(null);
@@ -32,7 +36,7 @@ function SunCalcs({ latitude, longitude, timezone, startDate }) {
       true
     );
 
-    //pull data for the net day
+    //pull data for the next day
     const luxonNextDay = DateTime.fromJSDate(startDate);
     const nextDay = luxonNextDay.plus({ days: 1 });
     const nextDayFormat = nextDay.toJSDate();
@@ -64,32 +68,53 @@ function SunCalcs({ latitude, longitude, timezone, startDate }) {
     setMoonsetAlternate(moonsetAltLocal.toISO());
   }, [startDate, latitude, longitude, timezone]);
 
-  // <p>Rise is: {moonTimes}</p>
-  // <p>Set is: {moonTimes.}</p>
+  // const prettyDate = startDate.toISO();
+  // console.log('prettydate: ', prettyDate);
+  // const cutPrettyDate = prettyDate.slice(0, 5);
+  // console.log('cut prettydate: ', cutPrettyDate);
+
+  //format date to send to display
+  const prettyDate = startDate
+    ? DateTime.fromJSDate(startDate).toFormat('EEE LLL dd yyyy')
+    : '';
+
+  console.log(prettyDate);
+
+  function formatDateTime(dateTimeInput) {
+    const dateTime = DateTime.fromISO(dateTimeInput);
+    return dateTime.toFormat('MMMM d, yyyy hh:mm');
+  }
+
+  // function formatDateTime(dateTimeInput) {
+  //   console.log(dateTimeInput);
+  //   return dateTimeInput;
+  // }
+
   return (
     <>
+      <p>{prettyDate}</p>
       <MoonIcon phase={phase} />
       <p>Illumination: {percentage}%</p>
       <div>
         {moonriseTime && !moonsetTime ? (
           <div>
-            <p>Local rise is: {moonriseTime}</p>
-            <p>Next Day Set is: {moonsetAlternate}</p>
+            <p>Local rise is: {formatDateTime(moonriseTime)}</p>
+            <p>Next Day Set is: {formatDateTime(moonsetAlternate)}</p>
           </div>
         ) : moonsetTime && !moonriseTime ? (
           <div>
-            <p>Local Set is: {moonsetTime}</p>
+            <p>Local Set is: {formatDateTime(moonsetTime)}</p>
             <p>There is no moonrise today</p>
           </div>
         ) : moonriseTime < moonsetTime ? (
           <div>
-            <p>Local rise is: {moonriseTime}</p>
-            <p>Local Set is: {moonsetTime}</p>
+            <p>Local rise is: {formatDateTime(moonriseTime)}</p>
+            <p>Local Set is: {formatDateTime(moonsetTime)}</p>
           </div>
         ) : (
           <div>
-            <p>Local rise is: {moonriseTime}</p>
-            <p>Next Day Set is: {moonsetAlternate}</p>
+            <p>Local rise is: {formatDateTime(moonriseTime)}</p>
+            <p>Next Day Set is: {formatDateTime(moonsetAlternate)}</p>
           </div>
         )}
       </div>

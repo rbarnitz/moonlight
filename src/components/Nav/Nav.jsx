@@ -36,7 +36,7 @@ function Nav() {
               Home
             </Link>
 
-            <Link className="navLink" to="/mytrips">
+            <Link className="navLink" to={`/mytrips/${user.id}`}>
               My Trips
             </Link>
 

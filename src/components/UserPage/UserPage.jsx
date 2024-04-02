@@ -48,6 +48,7 @@ function UserPage() {
               width: 200, // Set the width
               height: 180, // Set the height
             }}
+            onClick={newTrip}
           >
             New Trip
           </Button>
