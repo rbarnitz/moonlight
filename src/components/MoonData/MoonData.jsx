@@ -61,12 +61,12 @@ const MoonData = () => {
     <div>
       <div style={{ textAlign: 'center' }}>
         <h2>Data For:</h2>
-        <h3>{locationName}</h3>
+        <h4>{locationName}</h4>
       </div>
       <Box>
         <Grid container spacing={2}>
           <Grid item xs={6}>
-            <div style={{ textAlign: 'center' }}>
+            <div style={{ textAlign: 'center', padding: '50px' }}>
               <DayPicker
                 mode="single"
                 selected={selectedDay}
@@ -79,6 +79,7 @@ const MoonData = () => {
           <Grid item xs={6}>
             <div
               style={{
+                padding: '50px',
                 justifyContent: 'flex-start',
                 paddingLeft: '30px',
               }}

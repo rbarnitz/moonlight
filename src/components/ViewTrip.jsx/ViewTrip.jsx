@@ -11,10 +11,9 @@ import {
 } from '@mui/material';
 import SunCalcs from '../SunCalcs/SunCalcs';
 import { useHistory } from 'react-router-dom';
-
 import { useSelector } from 'react-redux';
-
 import { Interval, DateTime } from 'luxon';
+import './ViewTrip.css';
 
 function ViewTrip() {
   const { id } = useParams();
@@ -81,13 +80,15 @@ function ViewTrip() {
     <div>
       <Grid container spacing={2}>
         <Grid item xs={6} style={{ textAlign: 'center' }}>
-          <h1>View Trip Details</h1>
-          <p> {trip.trip_location}</p>
-          <p> {formatDate(trip.trip_start)} - </p>
-          <p> {formatDate(trip.trip_end)}</p>
-          <Button onClick={myTrips} variant="outlined">
-            Back
-          </Button>{' '}
+          <div className="centered">
+            <h1>Trip Details:</h1>
+            <p> {trip.trip_location}</p>
+            <p> {formatDate(trip.trip_start)} - </p>
+            <p> {formatDate(trip.trip_end)}</p>
+            <Button onClick={myTrips} variant="outlined">
+              Back
+            </Button>{' '}
+          </div>
         </Grid>
 
         <Grid item xs={6}>

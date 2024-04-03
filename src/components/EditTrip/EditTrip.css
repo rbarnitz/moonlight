@@ -1,7 +1,11 @@
 .centered {
-  height: 70vh;
+  height: 25vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.padding {
+  padding: 20px; /* Adjust the value as needed */
 }

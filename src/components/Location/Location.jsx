@@ -108,6 +108,7 @@ const Location = () => {
             type="text"
             value={townName}
             onChange={handleInputChange}
+            color="success"
             onKeyPress={handleEnter}
             InputProps={{
               endAdornment: (

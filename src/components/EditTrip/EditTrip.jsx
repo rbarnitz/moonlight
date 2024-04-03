@@ -9,10 +9,19 @@ import {
   Card,
   CardContent,
   CardActions,
+  InputAdornment,
+  TextField,
+  IconButton,
   Typography,
   Paper,
   Stack,
 } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+
+import { format } from 'date-fns';
+import { DateTime, Interval } from 'luxon';
+import { DayPicker } from 'react-day-picker';
+import './EditTrip.css';
 
 // import Accordion from '@mui/material/Accordion';
 // import AccordionDetails from '@mui/material/AccordionDetails';
@@ -72,14 +81,38 @@ function EditTrip(tripInfo) {
 
   return (
     <div>
-      <p>Edit here</p>
-      <p>Location {trip.trip_location}</p>
-      <p>Trip Start {trip.trip_start}</p>
-      <p>Trip End {trip.trip_end}</p>
+      <div>
+        {/* <p>Trip Start {trip.trip_start}</p>
+        <p>Trip End {trip.trip_end}</p> */}
+      </div>
 
-      <Button onClick={() => submitEdit(tripData)} variant="outlined">
-        Submit Changes
-      </Button>
+      <div className="container">
+        <Box className="padding" width="400px" p={2}>
+          <TextField
+            id="outlined-basic"
+            label="Enter Location"
+            variant="outlined"
+            type="text"
+            color="success"
+            label={trip.trip_location}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton aria-label="search" edge="end">
+                    <SearchIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+
+        <DayPicker mode="range" min={2} max={6} numberOfMonths={2} />
+
+        <Button onClick={() => submitEdit(tripData)} variant="outlined">
+          Submit Changes
+        </Button>
+      </div>
     </div>
   );
 }

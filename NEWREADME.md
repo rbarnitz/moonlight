@@ -81,20 +81,6 @@ if only moonset : noon-ish set, no rise.
 For camping purposes:
 Want early-evening moonlight (Moon visibility period = 9-14hrs)
 
-<div>
-      {A && !B ? (
-        <p>{`Only A exists: A = ${A}, C = ${C}`}</p>
-      ) : B && !A ? (
-        <p>No rise today</p>
-      ) : A > B ? (
-        <p>{`A is greater than B: A = ${A}, C = ${C}`}</p>
-      ) : (
-        <p>{`A is less than or equal to B: A = ${A}, B = ${B}`}</p>
-      )}
-    </div>
-  );
-}
-
 Edit Notes:
 
 Changed app location
@@ -118,9 +104,6 @@ days to database changing based on Australia
 css property of background-attachment: 'fixed'
 
 For presentation:
-change button colors
-Add AM, PM to moon data page
-remove user ID on user page
 Make About page prettier & add back button
 change "register" button
 Different tabs to show different app pages

@@ -58,7 +58,7 @@ function LoginForm() {
         </label>
       </div>
       <div>
-        <Button variant="outlined" type="submit">
+        <Button color="secondary" variant="outlined" type="submit">
           Log In
         </Button>
       </div>

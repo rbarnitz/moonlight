@@ -53,7 +53,7 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        <Button variant="outlined" type="submit">
+        <Button color="secondary" variant="outlined" type="submit">
           Register
         </Button>{' '}
       </div>

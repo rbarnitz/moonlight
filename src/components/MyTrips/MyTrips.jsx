@@ -57,7 +57,7 @@ function MyTrips() {
     return (
       <>
         <div>No trips to display</div>
-        <Button onClick={newTrip} variant="outlined">
+        <Button className="trips-button" onClick={newTrip} variant="outlined">
           New Trip
         </Button>
       </>
@@ -100,12 +100,14 @@ function MyTrips() {
 
   return (
     <div>
-      {/* Display trips */}
-      <h1 style={{ paddingLeft: '10px' }}>My Trips:</h1>
-      <Button className="trips-button" onClick={newTrip} variant="outlined">
-        {' '}
-        New Trip
-      </Button>
+      <div className="trips-button">
+        {/* Display trips */}
+        <h1>My Trips:</h1>
+        <Button className="trips-button" onClick={newTrip} variant="outlined">
+          {' '}
+          New Trip
+        </Button>
+      </div>
 
       <section className="tripcards">
         {trips.map((trip) => (

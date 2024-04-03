@@ -39,6 +39,9 @@ function App() {
       primary: {
         main: '#e4cfb6', // Your desired primary color
       },
+      secondary: {
+        main: '#6f1d1b',
+      },
     },
   });
 
