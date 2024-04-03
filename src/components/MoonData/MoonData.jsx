@@ -54,54 +54,55 @@ const MoonData = () => {
     : '';
 
   //display selected date in footer
-  const footer = prettyDate ? (
-    <p>You selected: {prettyDate}.</p>
-  ) : (
-    <p>Please pick a day.</p>
-  );
+  const footer = prettyDate ? <p>{prettyDate}.</p> : <p>Please pick a day.</p>;
   console.log('selected day unformatted', selectedDay);
 
   return (
-    <Box>
-      <h1>Moon Data</h1>
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <div style={{ textAlign: 'center' }}>
-            <DayPicker
-              mode="single"
-              selected={selectedDay}
-              onSelect={setSelectedDay}
-              footer={footer}
-              className="moondata-daypicker" // Add a custom class name
-            />
-          </div>
-        </Grid>
-        <Grid item xs={6}>
-          <div
-            style={{
-              justifyContent: 'flex-start',
-              paddingLeft: '30px',
-            }}
-          >
-            <SunCalcs
-              latitude={latitude}
-              longitude={longitude}
-              timezone={timezone}
-              startDate={selectedDay}
-            />
-          </div>
-        </Grid>
-      </Grid>
+    <div>
       <div style={{ textAlign: 'center' }}>
-        <p>Moon Data for {locationName}</p>
-        <Button onClick={handleBack} variant="outlined">
-          Change Location
-        </Button>
-        <Button onClick={handleNext} variant="outlined">
-          Next
-        </Button>
+        <h2>Data For:</h2>
+        <h3>{locationName}</h3>
       </div>
-    </Box>
+      <Box>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <div style={{ textAlign: 'center' }}>
+              <DayPicker
+                mode="single"
+                selected={selectedDay}
+                onSelect={setSelectedDay}
+                footer={footer}
+                className="moondata-daypicker" // Add a custom class name
+              />
+            </div>
+          </Grid>
+          <Grid item xs={6}>
+            <div
+              style={{
+                justifyContent: 'flex-start',
+                paddingLeft: '30px',
+              }}
+            >
+              <SunCalcs
+                latitude={latitude}
+                longitude={longitude}
+                timezone={timezone}
+                startDate={selectedDay}
+              />
+            </div>
+          </Grid>
+        </Grid>
+        <div style={{ textAlign: 'center' }}>
+          <Button onClick={handleBack} variant="outlined">
+            Location
+          </Button>
+          {'    '}
+          <Button onClick={handleNext} variant="outlined">
+            Next
+          </Button>
+        </div>
+      </Box>
+    </div>
   );
 };
 

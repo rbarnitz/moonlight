@@ -112,8 +112,24 @@ color styles/themes
 footer to bottom of page
 scroll-down background for my trips
 moondata - borders for moondata boxes
-moondata - format moondata buttons
 
 color fix
 days to database changing based on Australia
 css property of background-attachment: 'fixed'
+
+For presentation:
+change button colors
+Add AM, PM to moon data page
+remove user ID on user page
+Make About page prettier & add back button
+change "register" button
+Different tabs to show different app pages
+Clear input history:  
+ https://www.google.com/search?q=remove+input+history+in+chrome&oq=remove+input+history+in+chrome&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB4yDQgCEAAYhgMYgAQYigUyDQgDEAAYhgMYgAQYigXSAQg3ODY1ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8
+
+Which technologies did you use: slides? Pics of
+React Redux Express Node JS
+
+For practice:
+Check for user ID and trip ID's displaying/consoling
+Check all button links

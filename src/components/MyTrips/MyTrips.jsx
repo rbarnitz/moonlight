@@ -75,11 +75,15 @@ function MyTrips() {
   }
 
   function deleteTrip(id) {
-    console.log('trying to delete trip: ', id);
+    //console.log('trying to delete trip: ', id);
 
     //return <Alert severity="warning">This is a warning Alert.</Alert>;
 
     dispatch({ type: 'DELETE_TRIP', payload: id });
+
+    //refresh trips to reflect delete
+    //console.log('dispatching fetch to ', userId);
+    dispatch({ type: 'FETCH_TRIPS', payload: userId });
   }
 
   //navigating to edit trip
@@ -97,17 +101,18 @@ function MyTrips() {
   return (
     <div>
       {/* Display trips */}
-      <h1>User ID is: {user}</h1>
-      <h1>URL ID is: {userId}</h1>
+      <h1 style={{ paddingLeft: '10px' }}>My Trips:</h1>
+      <Button className="trips-button" onClick={newTrip} variant="outlined">
+        {' '}
+        New Trip
+      </Button>
+
       <section className="tripcards">
         {trips.map((trip) => (
           <Box key={trip.trip_id} width="400px" className="card">
             <CardContent className="cardcontent">
-              <Typography variant="h5">
-                Location: {trip.trip_location}
-              </Typography>
-              Start: {formatDate(trip.trip_start)}, End:{' '}
-              {formatDate(trip.trip_end)}
+              <Typography variant="h5">{trip.trip_location}</Typography>
+              {formatDate(trip.trip_start)} - {formatDate(trip.trip_end)}
             </CardContent>
             <Button onClick={() => viewTrip(trip.trip_id)}>View</Button>
             <Button onClick={() => editTrip(trip.trip_id)}>EDIT</Button>
@@ -115,10 +120,6 @@ function MyTrips() {
           </Box>
         ))}
       </section>
-
-      <Button onClick={newTrip} variant="outlined">
-        New Trip
-      </Button>
     </div>
   );
 }

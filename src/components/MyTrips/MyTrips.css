@@ -20,3 +20,7 @@
   background-color: transparent;
   /* Other styles for the card content */
 }
+
+.trips-button {
+  padding-left: 10px;
+}

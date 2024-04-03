@@ -59,36 +59,31 @@ function SunCalcs({ latitude, longitude, timezone, startDate }) {
       : 'No data';
 
     //luxon to local time
-    const moonriseLocal = DateTime.fromISO(moonriseUTC, { zone: timezone });
-    const moonsetLocal = DateTime.fromISO(moonsetUTC, { zone: timezone });
-    const moonsetAltLocal = DateTime.fromISO(moonsetAltUTC, { zone: timezone });
+    const moonriseLocal = DateTime.fromISO(moonriseUTC, {
+      zone: timezone,
+    }).toFormat('MMMM d, yyyy hh:mm a');
+    const moonsetLocal = DateTime.fromISO(moonsetUTC, {
+      zone: timezone,
+    }).toFormat('MMMM d, yyyy hh:mm a');
+    const moonsetAltLocal = DateTime.fromISO(moonsetAltUTC, {
+      zone: timezone,
+    }).toFormat('MMMM d, yyyy hh:mm a');
 
-    setMoonriseTime(moonriseLocal.toISO());
-    setMoonsetTime(moonsetLocal.toISO());
-    setMoonsetAlternate(moonsetAltLocal.toISO());
+    setMoonriseTime(moonriseLocal);
+    setMoonsetTime(moonsetLocal);
+    setMoonsetAlternate(moonsetAltLocal);
   }, [startDate, latitude, longitude, timezone]);
-
-  // const prettyDate = startDate.toISO();
-  // console.log('prettydate: ', prettyDate);
-  // const cutPrettyDate = prettyDate.slice(0, 5);
-  // console.log('cut prettydate: ', cutPrettyDate);
 
   //format date to send to display
   const prettyDate = startDate
     ? DateTime.fromJSDate(startDate).toFormat('EEE LLL dd yyyy')
     : '';
 
-  console.log(prettyDate);
-
   function formatDateTime(dateTimeInput) {
-    const dateTime = DateTime.fromISO(dateTimeInput);
-    return dateTime.toFormat('MMMM d, yyyy hh:mm');
+    // const dateTime = DateTime.fromISO(dateTimeInput);
+    // return dateTime.toFormat('MMMM d, yyyy hh:mm');
+    return dateTimeInput;
   }
-
-  // function formatDateTime(dateTimeInput) {
-  //   console.log(dateTimeInput);
-  //   return dateTimeInput;
-  // }
 
   return (
     <>
