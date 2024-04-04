@@ -54,14 +54,13 @@ const MoonData = () => {
     : '';
 
   //display selected date in footer
-  const footer = prettyDate ? <p>{prettyDate}.</p> : <p>Please pick a day.</p>;
-  console.log('selected day unformatted', selectedDay);
+  // const footer = prettyDate ? <p>{prettyDate}.</p> : <p>Please pick a day.</p>;
+  // console.log('selected day unformatted', selectedDay);
 
   return (
     <div>
       <div style={{ textAlign: 'center' }}>
-        <h2>Data For:</h2>
-        <h4>{locationName}</h4>
+        <h4> Data For: {locationName}</h4>
       </div>
       <Box>
         <Grid container spacing={2}>
@@ -71,7 +70,7 @@ const MoonData = () => {
                 mode="single"
                 selected={selectedDay}
                 onSelect={setSelectedDay}
-                footer={footer}
+                // footer={footer}
                 className="moondata-daypicker" // Add a custom class name
               />
             </div>

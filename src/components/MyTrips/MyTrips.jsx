@@ -116,9 +116,30 @@ function MyTrips() {
               <Typography variant="h5">{trip.trip_location}</Typography>
               {formatDate(trip.trip_start)} - {formatDate(trip.trip_end)}
             </CardContent>
-            <Button onClick={() => viewTrip(trip.trip_id)}>View</Button>
-            <Button onClick={() => editTrip(trip.trip_id)}>EDIT</Button>
-            <Button onClick={() => deleteTrip(trip.trip_id)}>DELETE</Button>
+            <Button
+              style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.19)', // Transparent white
+              }}
+              onClick={() => viewTrip(trip.trip_id)}
+            >
+              View
+            </Button>
+            <Button
+              style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.19)', // Transparent white
+              }}
+              onClick={() => editTrip(trip.trip_id)}
+            >
+              EDIT
+            </Button>
+            <Button
+              style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.11)', // Transparent white
+              }}
+              onClick={() => deleteTrip(trip.trip_id)}
+            >
+              DELETE
+            </Button>
           </Box>
         ))}
       </section>

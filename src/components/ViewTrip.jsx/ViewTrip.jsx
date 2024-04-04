@@ -81,10 +81,12 @@ function ViewTrip() {
       <Grid container spacing={2}>
         <Grid item xs={6} style={{ textAlign: 'center' }}>
           <div className="centered">
-            <h1>Trip Details:</h1>
+            <h2>Trip Details:</h2>
             <p> {trip.trip_location}</p>
-            <p> {formatDate(trip.trip_start)} - </p>
-            <p> {formatDate(trip.trip_end)}</p>
+            <p>
+              {' '}
+              {formatDate(trip.trip_start)} - {formatDate(trip.trip_end)}
+            </p>
             <Button onClick={myTrips} variant="outlined">
               Back
             </Button>{' '}

@@ -94,9 +94,7 @@ parameters to delete specific trip
 Alert not working, fix.
 
 To Do small Tasks:
-color styles/themes
 footer to bottom of page
-scroll-down background for my trips
 moondata - borders for moondata boxes
 
 color fix
