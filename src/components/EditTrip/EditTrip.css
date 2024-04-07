@@ -1,11 +1,14 @@
-.centered {
-  height: 25vh;
+.center {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 30px;
 }
 
 .padding {
-  padding: 20px; /* Adjust the value as needed */
+  padding: 10px; /* Adjust the value as needed */
+}
+
+.container {
+  padding: 10px;
 }

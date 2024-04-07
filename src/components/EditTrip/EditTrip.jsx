@@ -3,47 +3,40 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+
 import {
   Button,
   Box,
-  Card,
-  CardContent,
-  CardActions,
   InputAdornment,
   TextField,
   IconButton,
-  Typography,
-  Paper,
-  Stack,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-
-import { format } from 'date-fns';
-import { DateTime, Interval } from 'luxon';
+import { DateTime } from 'luxon';
 import { DayPicker } from 'react-day-picker';
 import './EditTrip.css';
 
-// import Accordion from '@mui/material/Accordion';
-// import AccordionDetails from '@mui/material/AccordionDetails';
-// import AccordionSummary from '@mui/material/AccordionSummary';
-
-function EditTrip(tripInfo) {
+function EditTrip() {
   const { id } = useParams();
   const [trip, setTrip] = useState(null);
-  const [tripData, setTripData] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  // State for the date range
+  const [range, setRange] = useState({
+    from: null,
+    to: null,
+  });
 
   let history = useHistory();
   const user = useSelector((store) => store.user.id);
   const dispatch = useDispatch();
 
-  //retrieve trip data to display
+  // Fetch trip data on component mount
   useEffect(() => {
     const fetchTrip = async () => {
       try {
         const response = await axios.get(`/api/viewtrip/${id}`);
         setTrip(response.data[0]);
-        //catch to delay display until info is retrieved
         setLoading(false);
       } catch (error) {
         console.error('Error fetching trip data:', error);
@@ -53,10 +46,25 @@ function EditTrip(tripInfo) {
     fetchTrip();
   }, [id]);
 
-  const trips = useSelector((store) => store.tripsReducer.trips); // Access   trips from tripsReducer
-  console.log('trip info: ', trip);
-  console.log('user id is: ', user);
+  // Footer content based on selected date range
+  let footer = <p>New Dates:</p>;
+  if (range.from) {
+    if (!range.to) {
+      footer = <p>{range.from.toLocaleDateString()}</p>;
+    } else if (range.to) {
+      let formatStart = formatDate(range.from.toLocaleDateString());
+      footer = (
+        <>
+          <p>
+            Selected dates: {range.from.toLocaleDateString()} -{' '}
+            {range.to.toLocaleDateString()}
+          </p>
+        </>
+      );
+    }
+  }
 
+  // Function to handle form submission
   function submitEdit() {
     const tripData = {
       trip_id: id,
@@ -69,10 +77,14 @@ function EditTrip(tripInfo) {
       trip_end: trip.trip_end,
     };
 
-    setTripData(tripData);
-
-    console.log('editing trip: ', tripData);
+    console.log('Editing trip:', tripData);
     dispatch({ type: 'EDIT_TRIP', payload: tripData });
+  }
+
+  //format shown dates
+  function formatDate(dateInput) {
+    const dateTime = DateTime.fromISO(dateInput, { zone: 'utc' });
+    return dateTime.toFormat('MM/dd/yyyy');
   }
 
   if (loading) {
@@ -81,20 +93,15 @@ function EditTrip(tripInfo) {
 
   return (
     <div>
-      <div>
-        {/* <p>Trip Start {trip.trip_start}</p>
-        <p>Trip End {trip.trip_end}</p> */}
-      </div>
-
       <div className="container">
-        <Box className="padding" width="400px" p={2}>
+        <Box className="center" width="600px" p={2}>
           <TextField
             id="outlined-basic"
             label="Enter Location"
             variant="outlined"
             type="text"
             color="success"
-            label={trip.trip_location}
+            defaultValue={trip.trip_location}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -106,10 +113,25 @@ function EditTrip(tripInfo) {
             }}
           />
         </Box>
+        <DayPicker
+          mode="range"
+          min={2}
+          max={6}
+          selected={range}
+          onSelect={setRange}
+          numberOfMonths={2}
+        />
 
-        <DayPicker mode="range" min={2} max={6} numberOfMonths={2} />
-
-        <Button onClick={() => submitEdit(tripData)} variant="outlined">
+        <div className="center">
+          <Box width="450px" height="100px">
+            <p>
+              Current dates: {formatDate(trip.trip_start)} -{' '}
+              {formatDate(trip.trip_end)}
+            </p>
+            <p>{footer}</p>
+          </Box>
+        </div>
+        <Button onClick={submitEdit} variant="outlined">
           Submit Changes
         </Button>
       </div>

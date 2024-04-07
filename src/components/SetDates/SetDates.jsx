@@ -45,15 +45,7 @@ const SetDates = () => {
       dispatchEnd = DateTime.fromJSDate(range.to);
       console.log('JS Date: ', dispatchStart);
 
-      // const intervals = Interval.fromDateTimes(
-      //   startDateTime.startOf('day'),
-      //   endDateTime.endOf('day')
-      // )
-      //   .splitBy({ day: 1 })
-      //   .map((d) => d.start);
-      // console.log('interval is  ', intervals);
-
-      startDate = dispatchStart.toISO(); // Convert to ISO 8601 string
+      dispatchStart.toISO(); // Convert to ISO 8601 string
       endDate = dispatchEnd.toISO(); // Convert to ISO 8601 string
       console.log('ISO Date: ', startDate);
 
