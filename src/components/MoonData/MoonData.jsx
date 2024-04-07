@@ -8,6 +8,7 @@ import SunCalcs from '../SunCalcs/SunCalcs';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import { Button, Grid, Box } from '@mui/material';
+import './MoonData.css';
 
 //date dependencies
 import { DateTime } from 'luxon';

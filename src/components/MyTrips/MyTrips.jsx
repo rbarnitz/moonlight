@@ -6,6 +6,7 @@ import store from '../../redux/store';
 import tripsReducer from '../../redux/reducers/trips.reducer';
 import { useHistory } from 'react-router-dom';
 import { DateTime } from 'luxon';
+
 import {
   Button,
   Box,
@@ -23,7 +24,6 @@ import './MyTrips.css';
 
 function MyTrips() {
   let history = useHistory();
-
   const dispatch = useDispatch();
 
   //set ID to URL ID
@@ -57,7 +57,13 @@ function MyTrips() {
     return (
       <>
         <div>No trips to display</div>
-        <Button className="trips-button" onClick={newTrip} variant="outlined">
+        <Button
+          style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.19)', // Transparent white
+          }}
+          onClick={newTrip}
+          variant="outlined"
+        >
           New Trip
         </Button>
       </>
@@ -103,7 +109,14 @@ function MyTrips() {
       <div className="trips-button">
         {/* Display trips */}
         <h1>My Trips:</h1>
-        <Button className="trips-button" onClick={newTrip} variant="outlined">
+        <Button
+          className="trips-button"
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.12)', // Transparent white
+          }}
+          onClick={newTrip}
+          variant="outlined"
+        >
           {' '}
           New Trip
         </Button>
@@ -117,6 +130,7 @@ function MyTrips() {
               {formatDate(trip.trip_start)} - {formatDate(trip.trip_end)}
             </CardContent>
             <Button
+              className="options-button"
               style={{
                 backgroundColor: 'rgba(0, 0, 0, 0.19)', // Transparent white
               }}
@@ -127,6 +141,7 @@ function MyTrips() {
             <Button
               style={{
                 backgroundColor: 'rgba(0, 0, 0, 0.19)', // Transparent white
+                margin: '0 10px', // Add margin around the button
               }}
               onClick={() => editTrip(trip.trip_id)}
             >
@@ -134,7 +149,7 @@ function MyTrips() {
             </Button>
             <Button
               style={{
-                backgroundColor: 'rgba(0, 0, 0, 0.11)', // Transparent white
+                backgroundColor: 'rgba(0, 0, 0, 0.19)', // Transparent white
               }}
               onClick={() => deleteTrip(trip.trip_id)}
             >
@@ -147,5 +162,4 @@ function MyTrips() {
   );
 }
 
-// this allows us to use <App /> in index.js
 export default MyTrips;

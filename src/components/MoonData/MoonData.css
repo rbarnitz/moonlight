@@ -1,0 +1,11 @@
+.card {
+  background-color: rgba(
+    233,
+    226,
+    226,
+    0.3
+  ); /* Adjust the alpha value (0.0 - 1.0) for transparency */
+  padding: 10px;
+  margin: 10px;
+  border-radius: 18px;
+}
