@@ -79,14 +79,24 @@ function ViewTrip() {
   return (
     <div>
       <Grid container spacing={2}>
-        <Grid item xs={6} style={{ textAlign: 'center' }}>
+        <Grid item xs={6} style={{ position: 'sticky', top: '20px' }}>
           <div className="centered">
-            <h2>Trip Details:</h2>
-            <p> {trip.trip_location}</p>
-            <p>
-              {' '}
-              {formatDate(trip.trip_start)} - {formatDate(trip.trip_end)}
-            </p>
+            <Box
+              sx={{
+                backgroundColor: 'rgba(255, 255, 255, 0.10)',
+                border: '1px solid #ccc',
+                borderRadius: '10px',
+                padding: '20px',
+                marginBottom: '20px',
+              }}
+            >
+              <h2>Trip Details:</h2>
+              <p> {trip.trip_location}</p>
+              <p>
+                {' '}
+                {formatDate(trip.trip_start)} - {formatDate(trip.trip_end)}
+              </p>
+            </Box>
             <Button onClick={myTrips} variant="outlined">
               Back
             </Button>{' '}
@@ -96,13 +106,24 @@ function ViewTrip() {
         <Grid item xs={6}>
           <section
             style={{
-              justifyContent: 'flex-start',
-              paddingLeft: '30px',
+              overflowY: 'auto',
+              maxHeight: 'calc(100vh - 40px)', // Adjust height as needed
             }}
             className="datecards"
           >
             {dateList.map((date, index) => (
-              <Box key={index} width="500px" height="300px" className="card">
+              <Box
+                key={index}
+                width="500px"
+                height="300px"
+                className="card"
+                sx={{
+                  border: '1px solid #ccc',
+                  borderRadius: '4px',
+                  padding: '10px',
+                  marginBottom: '10px',
+                }}
+              >
                 <CardContent className="cardcontent">
                   <SunCalcs
                     latitude={trip.trip_latitude}

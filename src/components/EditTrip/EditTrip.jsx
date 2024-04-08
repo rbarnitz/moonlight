@@ -34,7 +34,7 @@ function EditTrip(tripInfo) {
   const [townName, setTownName] = useState('');
   const [locationInfo, setLocationInfo] = useState('');
   const [searchSuccess, setSearchSuccess] = useState(false);
-  const [resultName, setResultName] = useState('');
+  const [resultName, setResultName] = useState(' ');
   const [coordinates, setCoordinates] = useState(null);
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
@@ -224,7 +224,16 @@ function EditTrip(tripInfo) {
         />
 
         <div className="center">
-          <Box width="450px" height="100px">
+          <Box
+            width="450px"
+            height="100px"
+            sx={{
+              border: '1px solid #ccc',
+              borderRadius: '10px',
+              padding: '10px',
+              marginBottom: '15px',
+            }}
+          >
             <p>
               Current dates: {formatDate(trip.trip_start)} -{' '}
               {formatDate(trip.trip_end)}
