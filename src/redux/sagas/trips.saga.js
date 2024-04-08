@@ -40,10 +40,7 @@ function* viewTrip(action) {
 
 function* editTrip(action) {
   try {
-    yield axios.put(
-      `/api/edittrip/${action.payload.tripId}`,
-      action.payload.tripData
-    );
+    yield axios.put(`/api/edittrip/${action.payload.trip_id}`, action.payload);
     // You can dispatch another action here after the edit is successful if needed
   } catch (error) {
     console.log('User put request failed', error);

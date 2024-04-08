@@ -7,16 +7,7 @@ const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
-/**
- * GET route template
- */
-
-/**
- * POST route template
- * //get info from store, to req
- */
-
-router.put(':id', (req, res) => {
+router.put('/:id', (req, res) => {
   const dbEditQuery = `UPDATE "trips" SET 
   "trip_location" = $1, 
   "trip_longitude" =$2 ,
@@ -27,7 +18,7 @@ router.put(':id', (req, res) => {
   WHERE "trip_id" = $7 AND "user_id" = $8;`;
 
   pool
-    .query(dbTripQuery, [
+    .query(dbEditQuery, [
       req.body.trip_location,
       req.body.trip_latitude,
       req.body.trip_longitude,

@@ -27,6 +27,10 @@ function EditTrip() {
     to: null,
   });
 
+  //declare date variables:
+  let startDate = null;
+  let endDate = null;
+
   let history = useHistory();
   const user = useSelector((store) => store.user.id);
   const dispatch = useDispatch();
@@ -46,13 +50,23 @@ function EditTrip() {
     fetchTrip();
   }, [id]);
 
+  let dispatchStart = '';
+  let dispatchEnd = '';
+
   // Footer content based on selected date range
   let footer = <p>New Dates:</p>;
   if (range.from) {
     if (!range.to) {
       footer = <p>{range.from.toLocaleDateString()}</p>;
     } else if (range.to) {
-      let formatStart = formatDate(range.from.toLocaleDateString());
+      //format range to DateTime
+      dispatchStart = DateTime.fromJSDate(range.from);
+      dispatchEnd = DateTime.fromJSDate(range.to);
+
+      //format for dispatch
+      startDate = dispatchStart.toISO(); // Convert to ISO 8601 string
+      endDate = dispatchEnd.toISO(); // Convert to ISO 8601 string
+
       footer = (
         <>
           <p>
@@ -73,8 +87,8 @@ function EditTrip() {
       trip_latitude: 11.1111,
       trip_longitude: 11.111,
       timezone: 'test zone',
-      trip_start: trip.trip_start,
-      trip_end: trip.trip_end,
+      trip_start: startDate,
+      trip_end: endDate,
     };
 
     console.log('Editing trip:', tripData);
@@ -128,7 +142,7 @@ function EditTrip() {
               Current dates: {formatDate(trip.trip_start)} -{' '}
               {formatDate(trip.trip_end)}
             </p>
-            <p>{footer}</p>
+            <div>{footer}</div>
           </Box>
         </div>
         <Button onClick={submitEdit} variant="outlined">

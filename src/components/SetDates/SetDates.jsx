@@ -45,7 +45,7 @@ const SetDates = () => {
       dispatchEnd = DateTime.fromJSDate(range.to);
       console.log('JS Date: ', dispatchStart);
 
-      dispatchStart.toISO(); // Convert to ISO 8601 string
+      startDate = dispatchStart.toISO(); // Convert to ISO 8601 string
       endDate = dispatchEnd.toISO(); // Convert to ISO 8601 string
       console.log('ISO Date: ', startDate);
 
