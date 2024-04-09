@@ -93,23 +93,23 @@ function SunCalcs({ latitude, longitude, timezone, startDate }) {
       <div>
         {moonriseTime && !moonsetTime ? (
           <div>
-            <p>Local rise is: {formatDateTime(moonriseTime)}</p>
-            <p>Next Day Set is: {formatDateTime(moonsetAlternate)}</p>
+            <p>Rising at: {formatDateTime(moonriseTime)}</p>
+            <p>Setting at: {formatDateTime(moonsetAlternate)}</p>
           </div>
         ) : moonsetTime && !moonriseTime ? (
           <div>
-            <p>Local Set is: {formatDateTime(moonsetTime)}</p>
+            <p>Setting at: {formatDateTime(moonsetTime)}</p>
             <p>There is no moonrise today</p>
           </div>
         ) : moonriseTime < moonsetTime ? (
           <div>
-            <p>Local rise is: {formatDateTime(moonriseTime)}</p>
-            <p>Local Set is: {formatDateTime(moonsetTime)}</p>
+            <p>Rising at: {formatDateTime(moonriseTime)}</p>
+            <p>Setting at: {formatDateTime(moonsetTime)}</p>
           </div>
         ) : (
           <div>
-            <p>Local rise is: {formatDateTime(moonriseTime)}</p>
-            <p>Next Day Set is: {formatDateTime(moonsetAlternate)}</p>
+            <p>Rising at: {formatDateTime(moonriseTime)}</p>
+            <p>Setting at: {formatDateTime(moonsetAlternate)}</p>
           </div>
         )}
       </div>

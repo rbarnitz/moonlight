@@ -36,11 +36,11 @@ function EditTrip(tripInfo) {
   const [locationInfo, setLocationInfo] = useState('');
   const [searchSuccess, setSearchSuccess] = useState(false);
   const [resultName, setResultName] = useState(' ');
-  const [coordinates, setCoordinates] = useState(null);
-  const [latitude, setLatitude] = useState(0);
-  const [longitude, setLongitude] = useState(0);
-  const [searchedLocation, setSearchedLocation] = useState('');
-  const [timezone, setTimezone] = useState('');
+  const [coordinates, setCoordinates] = useState();
+  const [latitude, setLatitude] = useState();
+  const [longitude, setLongitude] = useState();
+  const [searchedLocation, setSearchedLocation] = useState();
+  const [timezone, setTimezone] = useState();
 
   //setting search changes
   const handleInputChange = (event) => {
