@@ -124,7 +124,14 @@ function MyTrips() {
 
       <section className="tripcards">
         {trips.map((trip) => (
-          <Box key={trip.trip_id} width="400px" className="card">
+          <Box
+            key={trip.trip_id}
+            width="400px"
+            className="card"
+            sx={{
+              border: '1px solid #ccc',
+            }}
+          >
             <CardContent className="cardcontent">
               <Typography variant="h5">{trip.trip_location}</Typography>
               {formatDate(trip.trip_start)} - {formatDate(trip.trip_end)}

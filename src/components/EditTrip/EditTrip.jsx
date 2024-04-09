@@ -16,6 +16,7 @@ import {
   Typography,
   Paper,
   Stack,
+  Grid,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -181,66 +182,63 @@ function EditTrip(tripInfo) {
   return (
     <div>
       <div className="container">
-        <Stack>
-          <Box className="center" width="600px" p={2}>
-            <TextField
-              id="outlined-basic"
-              label={trip.trip_location}
-              variant="outlined"
-              type="text"
-              onChange={handleInputChange}
-              color="success"
-              onKeyPress={handleEnter}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={handleSearch}
-                      aria-label="search"
-                      edge="end"
-                    >
-                      {' '}
-                      <SearchIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Box>
-          {searchSuccess && (
-            <Box p={2}>
-              <p>New location: {resultName}</p>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <Box className="center" width="600px" p={2}>
+              <TextField
+                id="outlined-basic"
+                label={trip.trip_location}
+                variant="outlined"
+                type="text"
+                onChange={handleInputChange}
+                color="secondary"
+                onKeyPress={handleEnter}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={handleSearch}
+                        aria-label="search"
+                        edge="end"
+                      >
+                        {' '}
+                        <SearchIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
             </Box>
-          )}
-        </Stack>
+            {searchSuccess && (
+              <Box p={2}>
+                <p>New location: {resultName}</p>
+              </Box>
+            )}
+          </Grid>
 
-        <DayPicker
-          mode="range"
-          min={2}
-          max={6}
-          selected={range}
-          onSelect={setRange}
-          numberOfMonths={2}
-        />
+          <Grid item xs={6}>
+            <DayPicker
+              mode="range"
+              min={2}
+              max={6}
+              selected={range}
+              onSelect={setRange}
+              numberOfMonths={2}
+            />
 
-        <div className="center">
-          <Box
-            width="450px"
-            height="100px"
-            sx={{
-              border: '1px solid #ccc',
-              borderRadius: '10px',
-              padding: '10px',
-              marginBottom: '15px',
-            }}
-          >
-            <p>
-              Current dates: {formatDate(trip.trip_start)} -{' '}
-              {formatDate(trip.trip_end)}
-            </p>
-            <div>{footer}</div>
-          </Box>
-        </div>
+            <div className="center">
+              <Box width="450px" height="100px">
+                <p>
+                  Current dates: {formatDate(trip.trip_start)} -{' '}
+                  {formatDate(trip.trip_end)}
+                </p>
+                <div>{footer}</div>
+              </Box>
+            </div>
+          </Grid>
+        </Grid>
+      </div>
+      <div className="center">
         <Button onClick={submitEdit} variant="outlined">
           Submit Changes
         </Button>

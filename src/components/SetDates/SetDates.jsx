@@ -8,7 +8,7 @@ import { DateTime, Interval } from 'luxon';
 import './SetDates.css';
 
 import Button from '@mui/material/Button';
-//import DateRange from 'react-day-picker/es/DateRange';
+import Box from '@mui/material/Box';
 import { DayPicker } from 'react-day-picker';
 
 const SetDates = () => {
@@ -78,6 +78,9 @@ const SetDates = () => {
   }
 
   function formatDate(dateInput) {
+    if (!dateInput) {
+      return ' ';
+    }
     const dateTime = DateTime.fromISO(dateInput, { zone: 'utc' });
     return dateTime.toFormat('MMMM d, yyyy');
   }
@@ -95,11 +98,21 @@ const SetDates = () => {
         onSelect={setRange}
         numberOfMonths={2}
       />
-
-      <p>Start Date is: {formatDate(startDate)}</p>
-      <p>End Date is: {formatDate(endDate)}</p>
-      <p>Location is: {locationName}</p>
-
+      <Box
+        width="300px"
+        height="300px"
+        className="card"
+        sx={{
+          border: '1px solid #ccc',
+          borderRadius: '4px',
+          padding: '10px',
+          marginBottom: '10px',
+        }}
+      >
+        <p>Start Date is: {formatDate(startDate)}</p>
+        <p>End Date is: {formatDate(endDate)}</p>
+        <p>Location is: {locationName}</p>
+      </Box>
       <Button onClick={handleNext} variant="outlined">
         Save Dates
       </Button>
