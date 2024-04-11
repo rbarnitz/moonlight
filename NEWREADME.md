@@ -16,27 +16,28 @@ Git
 Give examples
 ```
 
-### Installing
+## Installing
+
+Clone the repository
+Navigate to the project directory
 
 Install project dependencies:
-
-npm install
 
 //MUI dependencies
 npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/icons-material
 npm install react-day-picker date-fns
 
-// installing dependencies for moon icons
+// Moon Icon dependencies:
 npm install react-icons
 npm install react-icons/wi
 
-//date manipulation
+//Date Manipulation:
 npm install luxon
 
-//date install
+## Sun Calcs
 
-End with an example of getting some data out of the system or using it for a little demo
+Sun calcs takes an input of location and date, and returns astronomical data
 
 ## Running Application
 
@@ -63,8 +64,6 @@ npm run server
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
 
 ## Notes
 
