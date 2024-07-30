@@ -79,37 +79,3 @@ if only moonset : noon-ish set, no rise.
 
 For camping purposes:
 Want early-evening moonlight (Moon visibility period = 9-14hrs)
-
-Edit Notes:
-
-Changed app location
-sent history push to editTrips
-
-To Do:
-parameters to edit specific trip [x]
-
-Delete:
-parameters to delete specific trip
-Alert not working, fix.
-
-To Do small Tasks:
-footer to bottom of page
-moondata - borders for moondata boxes
-
-color fix
-days to database changing based on Australia
-css property of background-attachment: 'fixed'
-
-For presentation:
-Make About page prettier & add back button
-change "register" button
-Different tabs to show different app pages
-Clear input history:  
- https://www.google.com/search?q=remove+input+history+in+chrome&oq=remove+input+history+in+chrome&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB4yDQgCEAAYhgMYgAQYigUyDQgDEAAYhgMYgAQYigXSAQg3ODY1ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8
-
-Which technologies did you use: slides? Pics of
-React Redux Express Node JS
-
-For practice:
-Check for user ID and trip ID's displaying/consoling
-Check all button links
